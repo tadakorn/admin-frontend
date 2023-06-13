@@ -34,30 +34,32 @@ onMounted(() => {
         </div>
       </div>
       <!-- info -->
-      <table class="table table-hover info">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">uid</th>
-            <th scope="col">chat_id</th>
-            <th scope="col">seq</th>
-            <th scope="col">content</th>
-            <th scope="col">role</th>
-            <th scope="col">date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="chatMessages in chatMessagesList" :key="chatMessages.id">
-            <td>{{ chatMessages.id }}</td>
-            <td>{{ chatMessages.uid }}</td>
-            <td>{{ chatMessages.chat_id }}</td>
-            <td>{{ chatMessages.seq }}</td>
-            <td>{{ chatMessages.content }}</td>
-            <td>{{ chatMessages.role }}</td>
-            <td>{{ chatMessages.date }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-hover info">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">uid</th>
+              <th scope="col">chat_id</th>
+              <th scope="col">seq</th>
+              <th scope="col">content</th>
+              <th scope="col">role</th>
+              <th scope="col">date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="chatMessages in chatMessagesList" :key="chatMessages.id">
+              <td>{{ chatMessages.id }}</td>
+              <td>{{ chatMessages.uid }}</td>
+              <td>{{ chatMessages.chat_id }}</td>
+              <td>{{ chatMessages.seq }}</td>
+              <td>{{ chatMessages.content }}</td>
+              <td>{{ chatMessages.role }}</td>
+              <td>{{ chatMessages.date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>

@@ -34,50 +34,52 @@ onMounted(() => {
         </div>
       </div>
       <!-- info -->
-      <table class="table table-hover info">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">email</th>
-            <th scope="col">role</th>
-            <th scope="col">organization</th>
-            <th scope="col">is_active</th>
-            <th scope="col">is_verified</th>
-            <th scope="col">verified_date</th>
-            <th scope="col">creator</th>
-            <th scope="col">last_login</th>
-            <th scope="col">last_access</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="user in userList" :key="user.id" @click="$router.push(`/user/${user.id}`)">
-            <td>{{ user.id }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.organization }}</td>
-            <td>
-              <font-awesome-icon
-                v-if="user.is_active"
-                icon="fa-solid fa-circle-check "
-                style="color: #3ec70b"
-              />
-              <font-awesome-icon v-else icon="fa-solid fa-circle-xmark " style="color: red" />
-            </td>
-            <td>
-              <font-awesome-icon
-                v-if="user.is_verified"
-                icon="fa-solid fa-circle-check "
-                style="color: #3ec70b"
-              />
-              <font-awesome-icon v-else icon="fa-solid fa-circle-xmark " style="color: red" />
-            </td>
-            <td>{{ user.verified_date }}</td>
-            <td>{{ user.creator }}</td>
-            <td>{{ user.last_login }}</td>
-            <td>{{ user.ast_access }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-hover info">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">email</th>
+              <th scope="col">role</th>
+              <th scope="col">organization</th>
+              <th scope="col">is_active</th>
+              <th scope="col">is_verified</th>
+              <th scope="col">verified_date</th>
+              <th scope="col">creator</th>
+              <th scope="col">last_login</th>
+              <th scope="col">last_access</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="user in userList" :key="user.id" @click="$router.push(`/user/${user.id}`)">
+              <td>{{ user.id }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.role }}</td>
+              <td>{{ user.organization }}</td>
+              <td class="text-center">
+                <font-awesome-icon
+                  v-if="user.is_active"
+                  icon="fa-solid fa-circle-check "
+                  style="color: #3ec70b"
+                />
+                <font-awesome-icon v-else icon="fa-solid fa-circle-xmark " style="color: red" />
+              </td>
+              <td class="text-center">
+                <font-awesome-icon
+                  v-if="user.is_verified"
+                  icon="fa-solid fa-circle-check "
+                  style="color: #3ec70b"
+                />
+                <font-awesome-icon v-else icon="fa-solid fa-circle-xmark " style="color: red" />
+              </td>
+              <td>{{ user.verified_date }}</td>
+              <td>{{ user.creator }}</td>
+              <td>{{ user.last_login }}</td>
+              <td>{{ user.last_access }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>

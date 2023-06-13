@@ -34,24 +34,26 @@ onMounted(() => {
         </div>
       </div>
       <!-- info -->
-      <table class="table table-hover info">
-        <thead>
-          <tr>
-            <th scope="col">total</th>
-            <th scope="col">page</th>
-            <th scope="col">pages</th>
-            <th scope="col">result</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="chatFolder in chatFolderList" :key="chatFolder.id">
-            <td>{{ chatFolder.total }}</td>
-            <td>{{ chatFolder.page }}</td>
-            <td>{{ chatFolder.pages }}</td>
-            <td>{{ chatFolder.result }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-hover info">
+          <thead>
+            <tr>
+              <th scope="col">total</th>
+              <th scope="col">page</th>
+              <th scope="col">pages</th>
+              <th scope="col">result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="chatFolder in chatFolderList" :key="chatFolder.id">
+              <td>{{ chatFolder.total }}</td>
+              <td>{{ chatFolder.page }}</td>
+              <td>{{ chatFolder.pages }}</td>
+              <td>{{ chatFolder.result }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>

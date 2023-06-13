@@ -34,24 +34,26 @@ onMounted(() => {
         </div>
       </div>
       <!-- info -->
-      <table class="table table-hover info">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">title</th>
-            <th scope="col">openai_org_key</th>
-            <th scope="col">openai_api_key</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="organization in organizationList" :key="organization.id">
-            <td>{{ organization.id }}</td>
-            <td>{{ organization.title }}</td>
-            <td>{{ organization.openai_org_key }}</td>
-            <td>{{ organization.openai_api_key }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-hover info">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">title</th>
+              <th scope="col">openai_org_key</th>
+              <th scope="col">openai_api_key</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="organization in organizationList" :key="organization.id">
+              <td>{{ organization.id }}</td>
+              <td>{{ organization.title }}</td>
+              <td>{{ organization.openai_org_key }}</td>
+              <td>{{ organization.openai_api_key }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>

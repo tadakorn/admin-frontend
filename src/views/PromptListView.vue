@@ -34,26 +34,28 @@ onMounted(() => {
         </div>
       </div>
       <!-- info -->
-      <table class="table table-hover info">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">title</th>
-            <th scope="col">detail</th>
-            <th scope="col">prompt</th>
-            <th scope="col">user_id</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="prompt in promptList" :key="prompt.id">
-            <td>{{ prompt.id }}</td>
-            <td>{{ prompt.title }}</td>
-            <td>{{ prompt.detail }}</td>
-            <td>{{ prompt.prompt }}</td>
-            <td>{{ prompt.user_id }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-hover info">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">title</th>
+              <th scope="col">detail</th>
+              <th scope="col">prompt</th>
+              <th scope="col">user_id</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="prompt in promptList" :key="prompt.id">
+              <td>{{ prompt.id }}</td>
+              <td>{{ prompt.title }}</td>
+              <td>{{ prompt.detail }}</td>
+              <td>{{ prompt.prompt }}</td>
+              <td>{{ prompt.user_id }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
