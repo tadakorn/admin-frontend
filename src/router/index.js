@@ -12,10 +12,37 @@ const router = createRouter({
     {
       path: '/user',
       name: 'user',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/UsersView.vue')
+      component: () => import('../views/UserListView.vue')
+    },
+    {
+      path: '/user/:id',
+      name: 'user-detail',
+      component: () => import('../views/UserDetailView.vue')
+    },
+    {
+      path: '/organization',
+      name: 'organization',
+      component: () => import('../views/OrganizationListView.vue')
+    },
+    {
+      path: '/prompt',
+      name: 'prompt',
+      component: () => import('../views/PromptListView.vue')
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: () => import('../views/ChatListView.vue')
+    },
+    {
+      path: '/chat-folder',
+      name: 'chat-folder',
+      component: () => import('../views/ChatFolderView.vue')
+    },
+    {
+      path: '/chat-messages',
+      name: 'chat-messages',
+      component: () => import('../views/ChatMessagesView.vue')
     }
   ]
 })

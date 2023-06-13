@@ -1,6 +1,6 @@
 <script setup>
-import { RouterLink, useRouter } from 'vue-router';
-import { useDefaultStore } from '../stores/default';
+import { RouterLink, useRouter } from 'vue-router'
+import { useDefaultStore } from '../stores/default'
 
 const router = useRouter()
 const defaultStore = useDefaultStore()
@@ -20,50 +20,79 @@ function changePage() {
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
-        <RouterLink class="nav-link" :class="{ collapsed: isRouteActive('/user') }" to="/user" @click="changePage">
+        <RouterLink
+          class="nav-link"
+          :class="{ collapsed: isRouteActive('/user') }"
+          to="/user"
+          @click="changePage"
+        >
           <font-awesome-icon icon="fa-regular fa-user" />
           <span>User</span>
         </RouterLink>
       </li>
 
       <li class="nav-item">
-        <RouterLink class="nav-link" :class="{ collapsed: isRouteActive('/organization') }" to="/organization" @click="changePage">
+        <RouterLink
+          class="nav-link"
+          :class="{ collapsed: isRouteActive('/organization') }"
+          to="/organization"
+          @click="changePage"
+        >
           <font-awesome-icon icon="fa-regular fa-building" />
           <span>Organization</span>
         </RouterLink>
       </li>
 
       <li class="nav-item">
-        <RouterLink class="nav-link" :class="{ collapsed: isRouteActive('/prompt') }" to="/prompt" @click="changePage">
-          <font-awesome-icon icon="fa-regular fa-comment" />
+        <RouterLink
+          class="nav-link"
+          :class="{ collapsed: isRouteActive('/prompt') }"
+          to="/prompt"
+          @click="changePage"
+        >
+          <font-awesome-icon icon="fa-regular fa-comments" />
+
           <span>Prompt</span>
         </RouterLink>
       </li>
 
       <li class="nav-item">
-        <RouterLink class="nav-link" :class="{ collapsed: isRouteActive('/chat') }" to="/chat" @click="changePage">
+        <RouterLink
+          class="nav-link"
+          :class="{ collapsed: isRouteActive('/chat') }"
+          to="/chat"
+          @click="changePage"
+        >
           <font-awesome-icon icon="fa-regular fa-comment" />
           <span>Chat</span>
         </RouterLink>
       </li>
 
       <li class="nav-item">
-        <RouterLink class="nav-link" :class="{ collapsed: isRouteActive('/chat-folder') }" to="/chat-folder" @click="changePage">
-          <font-awesome-icon icon="fa-regular fa-comment" />
+        <RouterLink
+          class="nav-link"
+          :class="{ collapsed: isRouteActive('/chat-folder') }"
+          to="/chat-folder"
+          @click="changePage"
+        >
+          <font-awesome-icon icon="fa-regular fa-folder-closed" />
           <span>Chat Folder</span>
         </RouterLink>
       </li>
 
       <li class="nav-item">
-        <RouterLink class="nav-link" :class="{ collapsed: isRouteActive('/chat-message') }" to="/chat-message" @click="changePage">
-          <font-awesome-icon icon="fa-regular fa-comment" />
+        <RouterLink
+          class="nav-link"
+          :class="{ collapsed: isRouteActive('/chat-messages') }"
+          to="/chat-messages"
+          @click="changePage"
+        >
+          <font-awesome-icon icon="fa-regular fa-comment-dots" />
           <span>Chat Message</span>
         </RouterLink>
       </li>
-
     </ul>
-
-</aside>
+  </aside>
 </template>
 
 <style>

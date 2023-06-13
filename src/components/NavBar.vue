@@ -1,22 +1,25 @@
 <script setup>
 import { RouterLink } from 'vue-router'
-import { useDefaultStore } from '../stores/default';
+import { useDefaultStore } from '../stores/default'
 
 const defaultStore = useDefaultStore()
+const projectName = import.meta.env.VITE_PROJECT_NAME
 </script>
 
 <template>
   <header id="header" class="header fixed-top d-flex align-items-center">
-
-  <div class="d-flex align-items-center justify-content-between">
-    <RouterLink to="/" class="logo d-flex align-items-center">
-      <img src="@/assets/logo.png" alt="">
-      <span class="d-none d-lg-block">PromptMark Admin</span>
-    </RouterLink>
-    <font-awesome-icon icon="fa-solid fa-bars" class="toggle-sidebar-btn" @click="defaultStore.toggleSidebar()" />
-  </div>
-  
-</header>
+    <div class="d-flex align-items-center justify-content-between">
+      <RouterLink to="/" class="logo d-flex align-items-center">
+        <img src="@/assets/logo.png" alt="" />
+        <span class="d-none d-lg-block">{{ projectName }}</span>
+      </RouterLink>
+      <font-awesome-icon
+        icon="fa-solid fa-bars"
+        class="toggle-sidebar-btn"
+        @click="defaultStore.toggleSidebar()"
+      />
+    </div>
+  </header>
 </template>
 
 <style scoped>
@@ -39,7 +42,7 @@ const defaultStore = useDefaultStore()
   font-size: 26px;
   font-weight: 700;
   color: #012970;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 .header {
