@@ -2,12 +2,22 @@
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
 
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 const chatMessagesList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
   axios.get(`${apiUrl}/v1/admin/chat/message?page=1&page_size=100`).then((res) => {
     chatMessagesList.value = res.data.result
+    chatMessagesList.value.forEach((chatMessages) => {
+      chatMessages.date = dayjs.utc(chatMessages.date).tz('Asia/Bangkok')
+    })
   })
 }
 
@@ -48,14 +58,18 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="chatMessages in chatMessagesList" :key="chatMessages.id">
+            <tr
+              v-for="chatMessages in chatMessagesList"
+              :key="chatMessages.id"
+              @click="$router.push(`/chat-messages/${chatMessages.id}`)"
+            >
               <td>{{ chatMessages.id }}</td>
               <td>{{ chatMessages.uid }}</td>
               <td>{{ chatMessages.chat_id }}</td>
               <td>{{ chatMessages.seq }}</td>
               <td>{{ chatMessages.content }}</td>
               <td>{{ chatMessages.role }}</td>
-              <td>{{ chatMessages.date }}</td>
+              <td>{{ chatMessages.date.format('YYYY-MM-DD HH:mm:ss') }}</td>
             </tr>
           </tbody>
         </table>

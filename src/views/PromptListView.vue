@@ -46,7 +46,11 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="prompt in promptList" :key="prompt.id">
+            <tr
+              v-for="prompt in promptList"
+              :key="prompt.id"
+              @click="$router.push(`/prompt/${prompt.id}`)"
+            >
               <td>{{ prompt.id }}</td>
               <td>{{ prompt.title }}</td>
               <td>{{ prompt.detail }}</td>

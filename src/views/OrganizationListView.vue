@@ -45,7 +45,11 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="organization in organizationList" :key="organization.id">
+            <tr
+              v-for="organization in organizationList"
+              :key="organization.id"
+              @click="$router.push(`/organization/${organization.id}`)"
+            >
               <td>{{ organization.id }}</td>
               <td>{{ organization.title }}</td>
               <td>{{ organization.openai_org_key }}</td>

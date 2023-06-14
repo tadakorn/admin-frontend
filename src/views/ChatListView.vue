@@ -1,6 +1,12 @@
 <script setup>
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 const chatList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
@@ -8,6 +14,9 @@ const apiUrl = import.meta.env.VITE_API_URL
 function getData() {
   axios.get(`${apiUrl}/v1/admin/chat/chat?page=1&page_size=100`).then((res) => {
     chatList.value = res.data.result
+    chatList.value.forEach((chat) => {
+      chat.publish_date = dayjs.utc(chat.publish_date).tz('Asia/Bangkok')
+    })
   })
 }
 
@@ -51,7 +60,7 @@ onMounted(() => {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="chat in chatList" :key="chat.id">
+            <tr v-for="chat in chatList" :key="chat.id" @click="$router.push(`/chat/${chat.id}`)">
               <td>{{ chat.id }}</td>
               <td>{{ chat.uid }}</td>
               <td>{{ chat.title }}</td>
@@ -74,7 +83,7 @@ onMounted(() => {
                 />
                 <font-awesome-icon v-else icon="fa-solid fa-circle-xmark " style="color: red" />
               </td>
-              <td>{{ chat.publish_date }}</td>
+              <td>{{ chat.publish_date.format('YYYY-MM-DD HH:mm:ss') }}</td>
               <td>{{ chat.folder_id }}</td>
             </tr>
           </tbody>

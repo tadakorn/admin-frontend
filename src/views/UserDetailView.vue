@@ -3,14 +3,32 @@ import axios from 'axios'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 const router = useRouter()
 const userId = router.currentRoute.value.params.id
-const user = ref({})
+const userDetail = ref({})
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
   axios.get(`${apiUrl}/v1/admin/user/${userId}`).then((res) => {
-    user.value = res.data
+    userDetail.value = res.data
+    userDetail.value.verified_date = dayjs.utc(userDetail.value.verified_date).tz('Asia/Bangkok')
+    userDetail.value.last_login = dayjs.utc(userDetail.value.last_login).tz('Asia/Bangkok')
+    userDetail.value.last_access = dayjs.utc(userDetail.value.last_access).tz('Asia/Bangkok')
+    userDetail.value.created_at = dayjs
+      .utc(userDetail.value.created_at)
+      .tz('Asia/Bangkok')
+      .format('YYYY-MM-DD HH:mm:ss')
+    userDetail.value.updated_at = dayjs
+      .utc(userDetail.value.updated_at)
+      .tz('Asia/Bangkok')
+      .format('YYYY-MM-DD HH:mm:ss')
   })
 }
 
@@ -20,66 +38,72 @@ onMounted(() => {
 </script>
 <template>
   <div class="container">
-    <div class="h5 pt-4">User ID {{ user.id }}</div>
+    <div class="h5 pt-4">User ID {{ userDetail.id }}</div>
     <div class="table-responsive">
       <table class="table">
         <tbody>
           <tr>
             <td scope="col">id</td>
-            <td>{{ user.id }}</td>
+            <td>{{ userDetail.id }}</td>
           </tr>
           <tr>
             <td scope="col">email</td>
             <div>
-              <input type="email" class="form-control" v-model="user.email" />
+              <input type="email" class="form-control" v-model="userDetail.email" />
             </div>
           </tr>
           <tr>
             <td scope="col">role</td>
-            <td>{{ user.role }}</td>
+            <div>
+              <input type="email" class="form-control" v-model="userDetail.role" />
+            </div>
           </tr>
           <tr>
             <td scope="col">organization</td>
-            <td>{{ user.organization }}</td>
+            <td>{{ userDetail.organization }}</td>
           </tr>
           <tr>
             <td scope="col">is_active</td>
             <td>
-              <input class="form-check-input" type="checkbox" v-model="user.is_active" />
+              <input class="form-check-input" type="checkbox" v-model="userDetail.is_active" />
             </td>
           </tr>
           <tr>
             <td scope="col">is_verified</td>
             <td>
-              <input class="form-check-input" type="checkbox" v-model="user.is_verified" />
+              <input class="form-check-input" type="checkbox" v-model="userDetail.is_verified" />
             </td>
           </tr>
           <tr>
             <td scope="col">verified_date</td>
-            <td>{{ user.verified_date }}</td>
+            <VueDatePicker v-model="userDetail.verified_date"></VueDatePicker>
           </tr>
           <tr>
             <td scope="col">creator</td>
-            <td>{{ user.creator }}</td>
+            <td>{{ userDetail.creator }}</td>
           </tr>
           <tr>
             <td scope="col">last_login</td>
-            <td>{{ user.last_login }}</td>
+            <VueDatePicker v-model="userDetail.last_login"></VueDatePicker>
           </tr>
           <tr>
             <td scope="col">last_access</td>
-            <td>{{ user.last_access }}</td>
+            <VueDatePicker v-model="userDetail.last_access"></VueDatePicker>
           </tr>
           <tr>
             <td scope="col">created_at</td>
-            <td>{{ user.created_at }}</td>
+            <td>{{ userDetail.created_at }}</td>
           </tr>
           <tr>
             <td scope="col">updated_at</td>
-            <td>{{ user.updated_at }}</td>
+            <td>{{ userDetail.updated_at }}</td>
           </tr>
         </tbody>
       </table>
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+        <button type="button" class="btn btn-success btn-sm">Save</button>
+      </div>
     </div>
   </div>
 </template>

@@ -25,14 +25,29 @@ const router = createRouter({
       component: () => import('../views/OrganizationListView.vue')
     },
     {
+      path: '/organization/:id',
+      name: 'organization-detail',
+      component: () => import('../views/OrganizationDetailView.vue')
+    },
+    {
       path: '/prompt',
       name: 'prompt',
       component: () => import('../views/PromptListView.vue')
     },
     {
+      path: '/prompt/:id',
+      name: 'prompt-detail',
+      component: () => import('../views/PromptDetailView.vue')
+    },
+    {
       path: '/chat',
       name: 'chat',
       component: () => import('../views/ChatListView.vue')
+    },
+    {
+      path: '/chat/:id',
+      name: 'chat-detail',
+      component: () => import('../views/ChatDetailView.vue')
     },
     {
       path: '/chat-folder',
@@ -43,6 +58,11 @@ const router = createRouter({
       path: '/chat-messages',
       name: 'chat-messages',
       component: () => import('../views/ChatMessagesView.vue')
+    },
+    {
+      path: '/chat-messages/:id',
+      name: 'chat-messages-detail',
+      component: () => import('../views/ChatMessagesDetailView.vue')
     }
   ]
 })
