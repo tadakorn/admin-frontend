@@ -49,31 +49,31 @@ onMounted(() => {
           </button>
         </div>
       </div>
-      <!-- info -->
-      <div class="table-responsive">
-        <table class="table table-hover info">
-          <thead>
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">name</th>
-              <th scope="col">image_url</th>
-              <th scope="col">prompt</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="systemPersona in systemPersonaList"
-              :key="systemPersona.id"
-              @click="$router.push(`/system-persona/${systemPersona.id}`)"
-            >
-              <td>{{ systemPersona.id }}</td>
-              <td>{{ systemPersona.name }}</td>
-              <td><img :src="systemPersona.image_url" style="height: 64px" /></td>
-              <td>{{ systemPersona.prompt }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    </div>
+    <!-- info -->
+    <div class="table-responsive">
+      <table class="table table-hover info">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">image_url</th>
+            <th scope="col">prompt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="systemPersona in systemPersonaList"
+            :key="systemPersona.id"
+            @click="$router.push(`/system-persona/${systemPersona.id}`)"
+          >
+            <td>{{ systemPersona.id }}</td>
+            <td>{{ systemPersona.name }}</td>
+            <td><img :src="systemPersona.image_url" style="height: 64px" /></td>
+            <td>{{ systemPersona.prompt }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
