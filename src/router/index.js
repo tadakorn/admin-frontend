@@ -55,14 +55,24 @@ const router = createRouter({
       component: () => import('../views/ChatFolderView.vue')
     },
     {
-      path: '/chat-messages',
-      name: 'chat-messages',
-      component: () => import('../views/ChatMessagesView.vue')
+      path: '/chat-message',
+      name: 'chat-message',
+      component: () => import('../views/ChatMessageView.vue')
     },
     {
-      path: '/chat-messages/:id',
-      name: 'chat-messages-detail',
-      component: () => import('../views/ChatMessagesDetailView.vue')
+      path: '/chat-message/:id',
+      name: 'chat-message-detail',
+      component: () => import('../views/ChatMessageDetailView.vue')
+    },
+    {
+      path: '/system-persona',
+      name: 'system-persona',
+      component: () => import('../views/SystemPersonaListView.vue')
+    },
+    {
+      path: '/system-persona/:id',
+      name: 'system-persona-detail',
+      component: () => import('../views/SystemPersonaDetailView.vue')
     }
   ]
 })

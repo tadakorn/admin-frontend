@@ -9,14 +9,14 @@ import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
-const chatMessagesList = ref([])
+const chatMessageList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
   axios.get(`${apiUrl}/v1/admin/chat/message?page=1&page_size=100`).then((res) => {
-    chatMessagesList.value = res.data.result
-    chatMessagesList.value.forEach((chatMessages) => {
-      chatMessages.date = dayjs.utc(chatMessages.date).tz('Asia/Bangkok')
+    chatMessageList.value = res.data.result
+    chatMessageList.value.forEach((chatMessage) => {
+      chatMessage.date = dayjs.utc(chatMessage.date).tz('Asia/Bangkok')
     })
   })
 }
@@ -30,7 +30,7 @@ onMounted(() => {
     <!-- title -->
     <div class="pt-4">
       <div class="d-flex justify-content-between py-4">
-        <span class="fs-4">Chat Messages</span>
+        <span class="fs-4">Chat Message</span>
         <div class="search-form">
           <div class="input-group">
             <input
@@ -59,17 +59,17 @@ onMounted(() => {
           </thead>
           <tbody>
             <tr
-              v-for="chatMessages in chatMessagesList"
-              :key="chatMessages.id"
-              @click="$router.push(`/chat-messages/${chatMessages.id}`)"
+              v-for="chatMessage in chatMessageList"
+              :key="chatMessage.id"
+              @click="$router.push(`/chat-message/${chatMessage.id}`)"
             >
-              <td>{{ chatMessages.id }}</td>
-              <td>{{ chatMessages.uid }}</td>
-              <td>{{ chatMessages.chat_id }}</td>
-              <td>{{ chatMessages.seq }}</td>
-              <td>{{ chatMessages.content }}</td>
-              <td>{{ chatMessages.role }}</td>
-              <td>{{ chatMessages.date.format('YYYY-MM-DD HH:mm:ss') }}</td>
+              <td>{{ chatMessage.id }}</td>
+              <td>{{ chatMessage.uid }}</td>
+              <td>{{ chatMessage.chat_id }}</td>
+              <td>{{ chatMessage.seq }}</td>
+              <td>{{ chatMessage.content }}</td>
+              <td>{{ chatMessage.role }}</td>
+              <td>{{ chatMessage.date.format('YYYY-MM-DD HH:mm:ss') }}</td>
             </tr>
           </tbody>
         </table>

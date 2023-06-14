@@ -55,7 +55,7 @@ onMounted(() => {
           <tr>
             <td scope="col">role</td>
             <div>
-              <input type="email" class="form-control" v-model="userDetail.role" />
+              <input type="text" class="form-control" v-model="userDetail.role" />
             </div>
           </tr>
           <tr>

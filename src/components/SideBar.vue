@@ -83,12 +83,23 @@ function changePage() {
       <li class="nav-item">
         <RouterLink
           class="nav-link"
-          :class="{ collapsed: isRouteActive('/chat-messages') }"
-          to="/chat-messages"
+          :class="{ collapsed: isRouteActive('/chat-message') }"
+          to="/chat-message"
           @click="changePage"
         >
           <font-awesome-icon icon="fa-regular fa-comment-dots" />
           <span>Chat Message</span>
+        </RouterLink>
+      </li>
+      <li class="nav-item">
+        <RouterLink
+          class="nav-link"
+          :class="{ collapsed: isRouteActive('/system-persona') }"
+          to="/system-persona"
+          @click="changePage"
+        >
+          <font-awesome-icon icon="fa-solid fa-person-shelter" />
+          <span>System Persona</span>
         </RouterLink>
       </li>
     </ul>

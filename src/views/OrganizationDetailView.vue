@@ -68,10 +68,10 @@ onMounted(() => {
           </tr>
         </tbody>
       </table>
-      <div class="d-flex justify-content-between">
-        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-        <button type="button" class="btn btn-success btn-sm">Save</button>
-      </div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-danger btn-sm">Delete</button>
+      <button type="button" class="btn btn-success btn-sm">Save</button>
     </div>
   </div>
 </template>
