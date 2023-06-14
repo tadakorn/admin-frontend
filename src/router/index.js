@@ -70,6 +70,11 @@ const router = createRouter({
       component: () => import('../views/SystemPersonaListView.vue')
     },
     {
+      path: '/system-persona/create',
+      name: 'system-persona-create',
+      component: () => import('../views/SystemPersonaCreateView.vue')
+    },
+    {
       path: '/system-persona/:id',
       name: 'system-persona-detail',
       component: () => import('../views/SystemPersonaDetailView.vue')

@@ -24,8 +24,10 @@ onMounted(() => {
   <div class="container">
     <!-- title -->
     <div class="pt-4">
-      <div class="d-flex justify-content-between py-4">
+      <div class="py-4">
         <span class="fs-4">System Persona</span>
+      </div>
+      <div class="d-flex justify-content-between pb-4">
         <div class="search-form">
           <div class="input-group">
             <input
@@ -36,6 +38,15 @@ onMounted(() => {
               aria-describedby="search-button"
             />
           </div>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            @click="$router.push('/system-persona/create')"
+          >
+            Create
+          </button>
         </div>
       </div>
       <!-- info -->
