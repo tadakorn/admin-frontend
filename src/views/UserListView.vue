@@ -2,12 +2,23 @@
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
 
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 const userList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
   axios.get(`${apiUrl}/v1/admin/user?page=1&page_size=50`).then((res) => {
     userList.value = res.data.result
+    userList.value.forEach(user => {
+      user.last_login = dayjs.utc(user.last_login).tz('Asia/Bangkok')
+      user.last_access = dayjs.utc(user.last_access).tz('Asia/Bangkok')
+    })
   })
 }
 
@@ -74,8 +85,8 @@ onMounted(() => {
               </td>
               <td>{{ user.verified_date }}</td>
               <td>{{ user.creator }}</td>
-              <td>{{ user.last_login }}</td>
-              <td>{{ user.last_access }}</td>
+              <td>{{ user.last_login.format('YYYY-MM-DD HH:mm:ss') }}</td>
+              <td>{{ user.last_access.format('YYYY-MM-DD HH:mm:ss') }}</td>
             </tr>
           </tbody>
         </table>
