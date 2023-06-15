@@ -19,8 +19,10 @@ onMounted(() => {
   <div class="container">
     <!-- title -->
     <div class="pt-4">
-      <div class="d-flex justify-content-between py-4">
+      <div class="py-4">
         <span class="fs-4">Prompt</span>
+      </div>
+      <div class="d-flex justify-content-between pb-4">
         <div class="search-form">
           <div class="input-group">
             <input
@@ -32,34 +34,43 @@ onMounted(() => {
             />
           </div>
         </div>
+        <div>
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            @click="$router.push('/prompt/create')"
+          >
+            Create
+          </button>
+        </div>
       </div>
-      <!-- info -->
-      <div class="table-responsive">
-        <table class="table table-hover info">
-          <thead>
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">title</th>
-              <th scope="col">detail</th>
-              <th scope="col">prompt</th>
-              <th scope="col">user_id</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="prompt in promptList"
-              :key="prompt.id"
-              @click="$router.push(`/prompt/${prompt.id}`)"
-            >
-              <td>{{ prompt.id }}</td>
-              <td>{{ prompt.title }}</td>
-              <td>{{ prompt.detail }}</td>
-              <td>{{ prompt.prompt }}</td>
-              <td>{{ prompt.user_id }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    </div>
+    <!-- info -->
+    <div class="table-responsive">
+      <table class="table table-hover info">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">detail</th>
+            <th scope="col">prompt</th>
+            <th scope="col">user_id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="prompt in promptList"
+            :key="prompt.id"
+            @click="$router.push(`/prompt/${prompt.id}`)"
+          >
+            <td>{{ prompt.id }}</td>
+            <td>{{ prompt.title }}</td>
+            <td>{{ prompt.detail }}</td>
+            <td>{{ prompt.prompt }}</td>
+            <td>{{ prompt.user_id }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>

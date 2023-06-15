@@ -35,6 +35,11 @@ const router = createRouter({
       component: () => import('../views/PromptListView.vue')
     },
     {
+      path: '/prompt/create',
+      name: 'prompt-create',
+      component: () => import('../views/PromptCreateView.vue')
+    },
+    {
       path: '/prompt/:id',
       name: 'prompt-detail',
       component: () => import('../views/PromptDetailView.vue')
