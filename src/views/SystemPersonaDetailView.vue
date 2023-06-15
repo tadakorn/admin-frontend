@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import ConfirmDeleteModal from '../components/ConfirmDeleteModal.vue'
 
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
@@ -12,83 +13,112 @@ dayjs.extend(timezone)
 
 const router = useRouter()
 const systemPersonaId = router.currentRoute.value.params.id
-const systemPersonaDetail = ref({})
+const systemPersona = ref({})
 const apiUrl = import.meta.env.VITE_API_URL
+const deleteModal = ref()
+
+onMounted(() => {
+  getData()
+})
 
 function getData() {
   axios.get(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`).then((res) => {
-    systemPersonaDetail.value = res.data
-    systemPersonaDetail.value.created_at = dayjs
-      .utc(systemPersonaDetail.value.created_at)
+    systemPersona.value = res.data
+    systemPersona.value.preview_image = systemPersona.value.image_url
+    systemPersona.value.created_at = dayjs
+      .utc(systemPersona.value.created_at)
       .tz('Asia/Bangkok')
       .format('YYYY-MM-DD HH:mm:ss')
-    systemPersonaDetail.value.updated_at = dayjs
-      .utc(systemPersonaDetail.value.updated_at)
+    systemPersona.value.updated_at = dayjs
+      .utc(systemPersona.value.updated_at)
       .tz('Asia/Bangkok')
       .format('YYYY-MM-DD HH:mm:ss')
   })
 }
 
-onMounted(() => {
-  getData()
-})
+async function confirmDelete() {
+  await axios.delete(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`)
+  router.push('/system-persona')
+}
+
+function initModal(modal) {
+  deleteModal.value = modal
+}
+
+function openDeleteModal() {
+  deleteModal.value.show()
+}
+
+function onImageChange(e) {
+  let files = e.target.files || e.dataTransfer.files
+  if (files.length) {
+    systemPersona.value.image_url = files[0]
+    systemPersona.value.preview_image = URL.createObjectURL(files[0])
+  }
+}
 </script>
+
 <template>
   <div class="container">
-    <div class="h5 pt-4">System Persona {{ systemPersonaDetail.id }}</div>
-    <div class="table-responsive">
-      <table class="table">
-        <tbody>
-          <tr>
-            <td scope="col">id</td>
-            <td>{{ systemPersonaDetail.id }}</td>
-          </tr>
-          <tr>
-            <td scope="col">name</td>
-            <td>
-              <input type="text" class="form-control" v-model="systemPersonaDetail.name" />
-            </td>
-          </tr>
-          <tr>
-            <td scope="col">image_url</td>
-            <td>
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <img
-                    :src="systemPersonaDetail.image_url"
-                    class="img-fluid"
-                    alt="Responsive Image"
-                  />
-                </div>
-                <div class="col-12">
-                  <label for="formFileDisabled" class="form-label"></label>
-                  <input class="form-control" type="file" id="formFileDisabled" />
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td scope="col">prompt</td>
-            <td>
-              <input type="text" class="form-control" v-model="systemPersonaDetail.prompt" />
-            </td>
-          </tr>
-          <tr>
-            <td scope="col">created_at</td>
-            <td>{{ systemPersonaDetail.created_at }}</td>
-          </tr>
-          <tr>
-            <td scope="col">updated_at</td>
-            <td>{{ systemPersonaDetail.updated_at }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="h5">Change System Persona</div>
+
+    <div class="bg-white p-4 rounded-3">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-2">id</div>
+        <div class="col-12 col-md-6">{{ systemPersona.id }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2">name</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="systemPersona.name" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2">image</div>
+        <div class="col-12 col-md-6">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <img
+                :src="systemPersona.preview_image"
+                class="img-fluid"
+                alt="Responsive Image"
+              />
+            </div>
+            <div class="col-12">
+              <label for="formFileDisabled" class="form-label"></label>
+              <input class="form-control" type="file" id="formFileDisabled" v-on:change="onImageChange" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2">prompt</div>
+        <div class="col-12 col-md-6">
+          <textarea class="form-control" v-model="systemPersona.prompt" rows="3"></textarea>
+        </div>
+      </div>
+      
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2">created_at</div>
+        <div class="col-12 col-md-6">{{ systemPersona.created_at }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2">updated_at</div>
+        <div class="col-12 col-md-6">{{ systemPersona.updated_at }}</div>
+      </div>
     </div>
-    <div class="d-flex justify-content-between">
-      <button type="button" class="btn btn-danger btn-sm">Delete</button>
-      <button type="button" class="btn btn-success btn-sm">Save</button>
+
+    <div class="d-flex justify-content-between my-4">
+      <button type="button" class="btn btn-danger" @click="openDeleteModal">Delete</button>
+      <button type="button" class="btn btn-success">Save</button>
     </div>
   </div>
+
+  <ConfirmDeleteModal @confirm-delete="confirmDelete" @init-modal="initModal" />
 </template>
 
 <style scoped>

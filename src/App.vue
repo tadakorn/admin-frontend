@@ -82,7 +82,7 @@ h6 {
 
 @media (max-width: 1199px) {
   #main {
-    padding: 20px;
+    padding: 1rem 0 0 0;
   }
 }
 </style>
