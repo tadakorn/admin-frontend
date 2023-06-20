@@ -18,9 +18,9 @@ onMounted(() => {
 <template>
   <div class="container">
     <!-- title -->
-    <div class="pt-4">
-      <div class="d-flex justify-content-between py-4">
-        <span class="fs-4">Organization</span>
+    <div class="">
+      <div class="h5">Organization</div>
+      <div class="d-flex justify-content-between mt-4">
         <div class="search-form">
           <div class="input-group">
             <input
@@ -34,7 +34,7 @@ onMounted(() => {
         </div>
       </div>
       <!-- info -->
-      <div class="table-responsive">
+      <div class="table-responsive mt-4 rounded-2">
         <table class="table table-hover info">
           <thead>
             <tr>
@@ -70,9 +70,5 @@ onMounted(() => {
 /* Custom Styles */
 .search-form {
   max-width: 50rem;
-}
-
-.search-input {
-  border-radius: 20px;
 }
 </style>

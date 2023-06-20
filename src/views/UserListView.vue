@@ -15,7 +15,7 @@ const apiUrl = import.meta.env.VITE_API_URL
 function getData() {
   axios.get(`${apiUrl}/v1/admin/user?page=1&page_size=50`).then((res) => {
     userList.value = res.data.result
-    userList.value.forEach(user => {
+    userList.value.forEach((user) => {
       user.last_login = dayjs.utc(user.last_login).tz('Asia/Bangkok')
       user.last_access = dayjs.utc(user.last_access).tz('Asia/Bangkok')
     })
@@ -29,9 +29,9 @@ onMounted(() => {
 <template>
   <div class="container">
     <!-- title -->
-    <div class="pt-4">
-      <div class="d-flex justify-content-between py-4">
-        <span class="fs-4">User</span>
+    <div class="">
+      <div class="h5">User</div>
+      <div class="d-flex justify-content-between mt-4">
         <div class="search-form">
           <div class="input-group">
             <input
@@ -45,7 +45,7 @@ onMounted(() => {
         </div>
       </div>
       <!-- info -->
-      <div class="table-responsive">
+      <div class="table-responsive mt-4 rounded-2">
         <table class="table table-hover info">
           <thead>
             <tr>
@@ -103,10 +103,6 @@ onMounted(() => {
 /* Custom Styles */
 .search-form {
   max-width: 50rem;
-}
-
-.search-input {
-  border-radius: 20px;
 }
 
 /* @media (min-width: 1024px) {
