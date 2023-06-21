@@ -36,7 +36,7 @@ onMounted(() => {
 
 <template>
   <div class="container">
-    <div class="h5">organization ID {{ organizationDetail.id }}</div>
+    <div class="h5">Change Organization</div>
 
     <div class="bg-white p-4 rounded-3">
       <div class="row align-items-center">

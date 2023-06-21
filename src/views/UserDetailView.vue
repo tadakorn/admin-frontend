@@ -38,7 +38,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="container">
-    <div class="h5">User ID {{ userDetail.id }}</div>
+    <div class="h5">Change User</div>
 
     <div class="bg-white p-4 rounded-3">
       <div class="row align-items-center">

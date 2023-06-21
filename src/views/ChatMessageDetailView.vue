@@ -36,7 +36,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="container">
-    <div class="h5">Chat Message {{ chatMessageDetail.id }}</div>
+    <div class="h5">Change Chat Message</div>
     <div class="bg-white p-4 rounded-3">
       <div class="row align-items-center">
         <div class="col-12 col-md-2 title">id</div>

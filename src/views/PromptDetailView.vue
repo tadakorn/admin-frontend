@@ -36,7 +36,7 @@ onMounted(() => {
 
 <template>
   <div class="container">
-    <div class="h5">prompt ID {{ promptDetail.id }}</div>
+    <div class="h5">Change Prompt</div>
 
     <div class="bg-white p-4 rounded-3">
       <div class="row align-items-center">
