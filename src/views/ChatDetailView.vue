@@ -35,67 +35,76 @@ onMounted(() => {
 </script>
 <template>
   <div class="container">
-    <div class="h5 pt-4">chat ID {{ chatDetail.id }}</div>
-    <div class="table-responsive">
-      <table class="table">
-        <tbody>
-          <tr>
-            <td scope="col">id</td>
-            <td>{{ chatDetail.id }}</td>
-          </tr>
-          <tr>
-            <td scope="col">uid</td>
-            <td>{{ chatDetail.uid }}</td>
-          </tr>
-          <tr>
-            <td scope="col">title</td>
-            <td>{{ chatDetail.title }}</td>
-          </tr>
-          <tr>
-            <td scope="col">user_id</td>
-            <td>{{ chatDetail.user_id }}</td>
-          </tr>
-          <tr>
-            <td scope="col">seq</td>
-            <td>{{ chatDetail.seq }}</td>
-          </tr>
-          <tr>
-            <td scope="col">message_count</td>
-            <td>{{ chatDetail.message_count }}</td>
-          </tr>
-          <tr>
-            <td scope="col">is_active</td>
-            <td>
-              <input class="form-check-input" type="checkbox" v-model="chatDetail.is_active" />
-            </td>
-          </tr>
-          <tr>
-            <td scope="col">is_published</td>
-            <td>
-              <input class="form-check-input" type="checkbox" v-model="chatDetail.is_published" />
-            </td>
-          </tr>
-          <tr>
-            <td scope="col">publish_date</td>
+    <div class="h5">Chat ID {{ chatDetail.id }}</div>
 
-            <VueDatePicker v-model="chatDetail.publish_date"></VueDatePicker>
-          </tr>
-          <tr>
-            <td scope="col">folder_id</td>
-            <div>
-              <input type="number" class="form-control" v-model="chatDetail.folder_id" />
-            </div>
-          </tr>
-          <tr>
-            <td scope="col">created_at</td>
-            <td>{{ chatDetail.created_at }}</td>
-          </tr>
-          <tr>
-            <td scope="col">updated_at</td>
-            <td>{{ chatDetail.updated_at }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="bg-white p-4 rounded-3">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-2 title">id</div>
+        <div class="col-12 col-md-6">{{ chatDetail.id }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">uid</div>
+        <div class="col-12 col-md-6">{{ chatDetail.uid }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">title</div>
+        <div class="col-12 col-md-6">{{ chatDetail.title }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">user_id</div>
+        <div class="col-12 col-md-6">{{ chatDetail.user_id }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">seq</div>
+        <div class="col-12 col-md-6">{{ chatDetail.seq }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">message_count</div>
+        <div class="col-12 col-md-6">{{ chatDetail.message_count }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">is_active</div>
+        <div class="col-12 col-md-6">
+          <input class="form-check-input" type="checkbox" v-model="chatDetail.is_active" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">is_published</div>
+        <div class="col-12 col-md-6">
+          <input class="form-check-input" type="checkbox" v-model="chatDetail.is_published" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">publish_date</div>
+        <div class="col-12 col-md-6">
+          <VueDatePicker v-model="chatDetail.publish_date"></VueDatePicker>
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">folder_id</div>
+        <div class="col-12 col-md-6">
+          {{ chatDetail.folder_id }}
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">created_at</div>
+        <div class="col-12 col-md-6">{{ chatDetail.created_at }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">updated_at</div>
+        <div class="col-12 col-md-6">{{ chatDetail.updated_at }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -103,5 +112,13 @@ onMounted(() => {
 <style scoped>
 td {
   border: none;
+}
+.title {
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .title {
+    margin-bottom: 5px;
+  }
 }
 </style>

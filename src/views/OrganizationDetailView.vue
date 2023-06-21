@@ -36,42 +36,52 @@ onMounted(() => {
 
 <template>
   <div class="container">
-    <div class="h5 pt-4">organization ID {{ organizationDetail.id }}</div>
-    <div class="table-responsive">
-      <table class="table">
-        <tbody>
-          <tr>
-            <td scope="col">id</td>
-            <td>{{ organizationDetail.id }}</td>
-          </tr>
-          <tr>
-            <td scope="col">title</td>
-            <td>{{ organizationDetail.title }}</td>
-          </tr>
-          <tr>
-            <td scope="col">openai_org_key</td>
-            <td>{{ organizationDetail.openai_org_key }}</td>
-          </tr>
-          <tr>
-            <td scope="col">openai_api_key</td>
-            <td>{{ organizationDetail.openai_api_key }}</td>
-          </tr>
+    <div class="h5">organization ID {{ organizationDetail.id }}</div>
 
-          <tr>
-            <td scope="col">created_at</td>
-            <td>{{ organizationDetail.created_at }}</td>
-          </tr>
+    <div class="bg-white p-4 rounded-3">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-2 title">id</div>
+        <div class="col-12 col-md-6">{{ organizationDetail.id }}</div>
+      </div>
 
-          <tr>
-            <td scope="col">updated_at</td>
-            <td>{{ organizationDetail.updated_at }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">title</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="organizationDetail.title" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">openai_org_key</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="organizationDetail.openai_org_key" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">openai_api_key</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="organizationDetail.openai_api_key" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">created_at</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="organizationDetail.created_at" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">updated_at</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="organizationDetail.updated_at" />
+        </div>
+      </div>
     </div>
-    <div class="d-flex justify-content-between">
-      <button type="button" class="btn btn-danger btn-sm">Delete</button>
-      <button type="button" class="btn btn-success btn-sm">Save</button>
+    <div class="d-flex justify-content-between my-4">
+      <button type="button" class="btn btn-danger">Delete</button>
+      <button type="button" class="btn btn-success">Save</button>
     </div>
   </div>
 </template>
@@ -79,5 +89,13 @@ onMounted(() => {
 <style scoped>
 td {
   border: none;
+}
+.title {
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .title {
+    margin-bottom: 10px;
+  }
 }
 </style>

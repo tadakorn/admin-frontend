@@ -64,50 +64,51 @@ function onImageChange(e) {
 
     <div class="bg-white p-4 rounded-3">
       <div class="row align-items-center">
-        <div class="col-12 col-md-2">id</div>
+        <div class="col-12 col-md-2 title">id</div>
         <div class="col-12 col-md-6">{{ systemPersona.id }}</div>
       </div>
 
       <div class="row align-items-center mt-4">
-        <div class="col-12 col-md-2">name</div>
+        <div class="col-12 col-md-2 title">name</div>
         <div class="col-12 col-md-6">
           <input type="text" class="form-control" v-model="systemPersona.name" />
         </div>
       </div>
 
       <div class="row align-items-center mt-4">
-        <div class="col-12 col-md-2">image</div>
+        <div class="col-12 col-md-2 title">image</div>
         <div class="col-12 col-md-6">
           <div class="row">
             <div class="col-12 col-md-6">
-              <img
-                :src="systemPersona.preview_image"
-                class="img-fluid"
-                alt="Responsive Image"
-              />
+              <img :src="systemPersona.preview_image" class="img-fluid" alt="Responsive Image" />
             </div>
             <div class="col-12">
               <label for="formFileDisabled" class="form-label"></label>
-              <input class="form-control" type="file" id="formFileDisabled" v-on:change="onImageChange" />
+              <input
+                class="form-control"
+                type="file"
+                id="formFileDisabled"
+                v-on:change="onImageChange"
+              />
             </div>
           </div>
         </div>
       </div>
 
       <div class="row align-items-center mt-4">
-        <div class="col-12 col-md-2">prompt</div>
+        <div class="col-12 col-md-2 title">prompt</div>
         <div class="col-12 col-md-6">
           <textarea class="form-control" v-model="systemPersona.prompt" rows="3"></textarea>
         </div>
       </div>
-      
+
       <div class="row align-items-center mt-4">
-        <div class="col-12 col-md-2">created_at</div>
+        <div class="col-12 col-md-2 title">created_at</div>
         <div class="col-12 col-md-6">{{ systemPersona.created_at }}</div>
       </div>
 
       <div class="row align-items-center mt-4">
-        <div class="col-12 col-md-2">updated_at</div>
+        <div class="col-12 col-md-2 title">updated_at</div>
         <div class="col-12 col-md-6">{{ systemPersona.updated_at }}</div>
       </div>
     </div>
@@ -124,5 +125,13 @@ function onImageChange(e) {
 <style scoped>
 td {
   border: none;
+}
+.title {
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .title {
+    margin-bottom: 10px;
+  }
 }
 </style>

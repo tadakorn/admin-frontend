@@ -36,48 +36,54 @@ onMounted(() => {
 </script>
 <template>
   <div class="container">
-    <div class="h5 pt-4">Chat Message {{ chatMessageDetail.id }}</div>
-    <div class="table-responsive">
-      <table class="table">
-        <tbody>
-          <tr>
-            <td scope="col">id</td>
-            <td>{{ chatMessageDetail.id }}</td>
-          </tr>
-          <tr>
-            <td scope="col">uid</td>
-            <td>{{ chatMessageDetail.uid }}</td>
-          </tr>
-          <tr>
-            <td scope="col">chat_id</td>
-            <td>{{ chatMessageDetail.chat_id }}</td>
-          </tr>
-          <tr>
-            <td scope="col">seq</td>
-            <td>{{ chatMessageDetail.seq }}</td>
-          </tr>
-          <tr>
-            <td scope="col">content</td>
-            <td>{{ chatMessageDetail.content }}</td>
-          </tr>
-          <tr>
-            <td scope="col">role</td>
-            <td>{{ chatMessageDetail.role }}</td>
-          </tr>
-          <tr>
-            <td scope="col">date</td>
-            <VueDatePicker v-model="chatMessageDetail.date"></VueDatePicker>
-          </tr>
-          <tr>
-            <td scope="col">created_at</td>
-            <td>{{ chatMessageDetail.created_at }}</td>
-          </tr>
-          <tr>
-            <td scope="col">updated_at</td>
-            <td>{{ chatMessageDetail.updated_at }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="h5">Chat Message {{ chatMessageDetail.id }}</div>
+    <div class="bg-white p-4 rounded-3">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-2 title">id</div>
+        <div class="col-12 col-md-6">{{ chatMessageDetail.id }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">uid</div>
+        <div class="col-12 col-md-6">{{ chatMessageDetail.uid }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">chat_id</div>
+        <div class="col-12 col-md-6">{{ chatMessageDetail.chat_id }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">seq</div>
+        <div class="col-12 col-md-6">{{ chatMessageDetail.seq }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">content</div>
+        <div class="col-12 col-md-6">{{ chatMessageDetail.content }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">role</div>
+        <div class="col-12 col-md-6">{{ chatMessageDetail.role }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">date</div>
+        <div class="col-12 col-md-6">
+          <VueDatePicker v-model="chatMessageDetail.date"></VueDatePicker>
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">created_at</div>
+        <div class="col-12 col-md-6">{{ chatMessageDetail.created_at }}</div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">updated_at</div>
+        <div class="col-12 col-md-6">{{ chatMessageDetail.updated_at }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -85,5 +91,13 @@ onMounted(() => {
 <style scoped>
 td {
   border: none;
+}
+.title {
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .title {
+    margin-bottom: 5px;
+  }
 }
 </style>

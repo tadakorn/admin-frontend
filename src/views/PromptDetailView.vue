@@ -36,46 +36,59 @@ onMounted(() => {
 
 <template>
   <div class="container">
-    <div class="h5 pt-4">prompt ID {{ promptDetail.id }}</div>
-    <div class="table-responsive">
-      <table class="table">
-        <tbody>
-          <tr>
-            <td scope="col">id</td>
-            <td>{{ promptDetail.id }}</td>
-          </tr>
-          <tr>
-            <td scope="col">title</td>
-            <td>{{ promptDetail.title }}</td>
-          </tr>
-          <tr>
-            <td scope="col">detail</td>
-            <td>{{ promptDetail.detail }}</td>
-          </tr>
-          <tr>
-            <td scope="col">prompt</td>
-            <td>{{ promptDetail.prompt }}</td>
-          </tr>
+    <div class="h5">prompt ID {{ promptDetail.id }}</div>
 
-          <tr>
-            <td scope="col">user_id</td>
-            <td>{{ promptDetail.user_id }}</td>
-          </tr>
-
-          <tr>
-            <td scope="col">created_at</td>
-            <td>{{ promptDetail.created_at }}</td>
-          </tr>
-          <tr>
-            <td scope="col">updated_at</td>
-            <td>{{ promptDetail.updated_at }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="d-flex justify-content-between">
-        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-        <button type="button" class="btn btn-success btn-sm">Save</button>
+    <div class="bg-white p-4 rounded-3">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-2 title">id</div>
+        <div class="col-12 col-md-6">{{ promptDetail.id }}</div>
       </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">title</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="promptDetail.title" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">detail</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="promptDetail.detail" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">prompt</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="promptDetail.prompt" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">user_id</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="promptDetail.user_id" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">created_at</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="promptDetail.created_at" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">updated_at</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="promptDetail.updated_at" />
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between my-4">
+      <button type="button" class="btn btn-danger">Delete</button>
+      <button type="button" class="btn btn-success">Save</button>
     </div>
   </div>
 </template>
@@ -83,5 +96,13 @@ onMounted(() => {
 <style scoped>
 td {
   border: none;
+}
+.title {
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .title {
+    margin-bottom: 10px;
+  }
 }
 </style>

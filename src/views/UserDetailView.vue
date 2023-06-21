@@ -38,72 +38,94 @@ onMounted(() => {
 </script>
 <template>
   <div class="container">
-    <div class="h5 pt-4">User ID {{ userDetail.id }}</div>
-    <div class="table-responsive">
-      <table class="table">
-        <tbody>
-          <tr>
-            <td scope="col">id</td>
-            <td>{{ userDetail.id }}</td>
-          </tr>
-          <tr>
-            <td scope="col">email</td>
-            <div>
-              <input type="email" class="form-control" v-model="userDetail.email" />
-            </div>
-          </tr>
-          <tr>
-            <td scope="col">role</td>
-            <div>
-              <input type="text" class="form-control" v-model="userDetail.role" />
-            </div>
-          </tr>
-          <tr>
-            <td scope="col">organization</td>
-            <td>{{ userDetail.organization }}</td>
-          </tr>
-          <tr>
-            <td scope="col">is_active</td>
-            <td>
-              <input class="form-check-input" type="checkbox" v-model="userDetail.is_active" />
-            </td>
-          </tr>
-          <tr>
-            <td scope="col">is_verified</td>
-            <td>
-              <input class="form-check-input" type="checkbox" v-model="userDetail.is_verified" />
-            </td>
-          </tr>
-          <tr>
-            <td scope="col">verified_date</td>
-            <VueDatePicker v-model="userDetail.verified_date"></VueDatePicker>
-          </tr>
-          <tr>
-            <td scope="col">creator</td>
-            <td>{{ userDetail.creator }}</td>
-          </tr>
-          <tr>
-            <td scope="col">last_login</td>
-            <VueDatePicker v-model="userDetail.last_login"></VueDatePicker>
-          </tr>
-          <tr>
-            <td scope="col">last_access</td>
-            <VueDatePicker v-model="userDetail.last_access"></VueDatePicker>
-          </tr>
-          <tr>
-            <td scope="col">created_at</td>
-            <td>{{ userDetail.created_at }}</td>
-          </tr>
-          <tr>
-            <td scope="col">updated_at</td>
-            <td>{{ userDetail.updated_at }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="d-flex justify-content-between">
-        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-        <button type="button" class="btn btn-success btn-sm">Save</button>
+    <div class="h5">User ID {{ userDetail.id }}</div>
+
+    <div class="bg-white p-4 rounded-3">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-2 title">id</div>
+        <div class="col-12 col-md-6">{{ userDetail.id }}</div>
       </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">email</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="userDetail.email" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">role</div>
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" v-model="userDetail.role" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">organization_id</div>
+        <div class="col-12 col-md-6">
+          {{ userDetail.organization_id }}
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">is_active</div>
+        <div class="col-12 col-md-6">
+          <input class="form-check-input" type="checkbox" v-model="userDetail.is_active" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">is_verified</div>
+        <div class="col-12 col-md-6">
+          <input class="form-check-input" type="checkbox" v-model="userDetail.is_verified" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">verified_date</div>
+        <div class="col-12 col-md-6">
+          <VueDatePicker v-model="userDetail.verified_date"></VueDatePicker>
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">creator_id</div>
+        <div class="col-12 col-md-6">
+          {{ userDetail.creator_id }}
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">last_login</div>
+        <div class="col-12 col-md-6">
+          <VueDatePicker v-model="userDetail.last_login"></VueDatePicker>
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">last_access</div>
+        <div class="col-12 col-md-6">
+          <VueDatePicker v-model="userDetail.last_access"></VueDatePicker>
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">created_at</div>
+        <div class="col-12 col-md-6">
+          {{ userDetail.created_at }}
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">updated_at</div>
+        <div class="col-12 col-md-6">
+          {{ userDetail.updated_at }}
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between my-4">
+      <button type="button" class="btn btn-danger">Delete</button>
+      <button type="button" class="btn btn-success">Save</button>
     </div>
   </div>
 </template>
@@ -111,5 +133,13 @@ onMounted(() => {
 <style scoped>
 td {
   border: none;
+}
+.title {
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .title {
+    margin-bottom: 10px;
+  }
 }
 </style>
