@@ -32,6 +32,18 @@ function getData() {
 onMounted(() => {
   getData()
 })
+
+function deleteData() {
+  axios
+    .delete(`${apiUrl}/v1/admin/prompt/${userId}`)
+    .then((res) => {
+      res.data
+      router.push('/prompt')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
 </script>
 
 <template>
@@ -87,7 +99,7 @@ onMounted(() => {
       </div>
     </div>
     <div class="d-flex justify-content-between my-4">
-      <button type="button" class="btn btn-danger">Delete</button>
+      <button type="button" class="btn btn-danger" @click="deleteData">Delete</button>
       <button type="button" class="btn btn-success">Save</button>
     </div>
   </div>

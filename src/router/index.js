@@ -21,6 +21,11 @@ const router = createRouter({
       component: () => import('../views/UserListView.vue')
     },
     {
+      path: '/user/create',
+      name: 'user-create',
+      component: () => import('../views/UserCreateView.vue')
+    },
+    {
       path: '/user/:id',
       name: 'user-detail',
       component: () => import('../views/UserDetailView.vue')
@@ -29,6 +34,11 @@ const router = createRouter({
       path: '/organization',
       name: 'organization',
       component: () => import('../views/OrganizationListView.vue')
+    },
+    {
+      path: '/organization/create',
+      name: 'organization-create',
+      component: () => import('../views/OrganizationCreateView.vue')
     },
     {
       path: '/organization/:id',

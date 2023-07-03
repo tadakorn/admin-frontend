@@ -48,7 +48,6 @@ function confirmLogin() {
 }
 function login() {
   let postData = { email: email.value, password: password.value }
-  console.log(postData)
   let customConfig = {
     headers: {
       'Content-Type': 'application/json'

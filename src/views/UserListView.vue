@@ -29,7 +29,7 @@ onMounted(() => {
 <template>
   <div class="container">
     <!-- title -->
-    <div class="">
+    <div>
       <div class="h5">User</div>
       <div class="d-flex justify-content-between mt-4">
         <div class="search-form">
@@ -43,6 +43,9 @@ onMounted(() => {
             />
           </div>
         </div>
+        <button type="button" class="btn btn-success" @click="$router.push('/user/create')">
+          Create
+        </button>
       </div>
       <!-- info -->
       <div class="table-responsive mt-4 rounded-2">

@@ -16,11 +16,9 @@ const systemPersona = ref({
 function onImageChange(e) {
   let files = e.target.files || e.dataTransfer.files
   if (!files.length) {
-    console.log('eiei')
     systemPersona.value.image = null
     systemPersona.value.preview_image = null
   } else {
-    console.log('za')
     systemPersona.value.image = files[0]
     systemPersona.value.preview_image = URL.createObjectURL(files[0])
   }

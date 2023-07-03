@@ -32,6 +32,9 @@ onMounted(() => {
             />
           </div>
         </div>
+        <button type="button" class="btn btn-success" @click="$router.push('/organization/create')">
+          Create
+        </button>
       </div>
       <!-- info -->
       <div class="table-responsive mt-4 rounded-2">
