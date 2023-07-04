@@ -86,7 +86,7 @@ function login() {
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-5">
           <div class="text-center">
-            <h2 id="exampleModalLabel">log In</h2>
+            <h2 id="exampleModalLabel">Log In</h2>
           </div>
           <div class="my-2">
             <input
@@ -115,7 +115,7 @@ function login() {
             </div>
           </div>
           <div class="d-flex justify-content-center mt-2">
-            <button type="button" class="btn btn-primary" @click="confirmLogin">log in</button>
+            <button type="button" class="btn btn-primary" @click="confirmLogin">Log In</button>
           </div>
 
           <div class="d-flex justify-content-center mt-3">

@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal.vue'
 
@@ -11,6 +11,7 @@ import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
+const cookies = inject('$cookies')
 const router = useRouter()
 const systemPersonaId = router.currentRoute.value.params.id
 const systemPersona = ref({})
@@ -22,7 +23,9 @@ onMounted(() => {
 })
 
 function getData() {
-  axios.get(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`).then((res) => {
+  const accessToken = cookies.get('acccessToken')
+  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
+  axios.get(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`, config).then((res) => {
     systemPersona.value = res.data
     systemPersona.value.preview_image = systemPersona.value.image_url
     systemPersona.value.created_at = dayjs

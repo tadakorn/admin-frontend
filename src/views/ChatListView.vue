@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, inject } from 'vue'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
@@ -8,11 +8,14 @@ import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
+const cookies = inject('$cookies')
 const chatList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
-  axios.get(`${apiUrl}/v1/admin/chat/chat?page=1&page_size=100`).then((res) => {
+  const accessToken = cookies.get('accessToken')
+  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
+  axios.get(`${apiUrl}/v1/admin/chat/chat?page=1&page_size=100`, config).then((res) => {
     chatList.value = res.data.result
     chatList.value.forEach((chat) => {
       chat.publish_date = dayjs.utc(chat.publish_date).tz('Asia/Bangkok')

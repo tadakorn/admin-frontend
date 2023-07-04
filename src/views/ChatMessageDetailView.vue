@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
 
 import dayjs from 'dayjs'
@@ -10,13 +10,16 @@ import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
+const cookies = inject('$cookies')
 const router = useRouter()
 const chatMessageId = router.currentRoute.value.params.id
 const chatMessageDetail = ref({})
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
-  axios.get(`${apiUrl}/v1/admin/chat/message/${chatMessageId}`).then((res) => {
+  const accessToken = cookies.get('accessToken')
+  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
+  axios.get(`${apiUrl}/v1/admin/chat/message/${chatMessageId}`, config).then((res) => {
     chatMessageDetail.value = res.data
     chatMessageDetail.value.date = dayjs.utc(chatMessageDetail.value.date).tz('Asia/Bangkok')
     chatMessageDetail.value.created_at = dayjs

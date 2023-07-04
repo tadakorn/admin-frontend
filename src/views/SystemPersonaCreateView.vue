@@ -1,9 +1,10 @@
 <script setup>
 import axios from 'axios'
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
 import defaultImage from '../assets/default.jpg'
 
+const cookies = inject('$cookies')
 const router = useRouter()
 const apiUrl = import.meta.env.VITE_API_URL
 const systemPersona = ref({
@@ -30,7 +31,11 @@ async function create() {
   form.append('image', systemPersona.value.image)
   form.append('prompt', systemPersona.value.prompt)
 
-  await axios.post(`${apiUrl}/v1/admin/system_persona`, form)
+  const accessToken = cookies.get('accessToken')
+  const config = {
+    headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'multipart/form-data' }
+  }
+  await axios.post(`${apiUrl}/v1/admin/system_persona`, form, config)
 
   router.push('/system-persona')
 }

@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, inject } from 'vue'
 
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
@@ -9,11 +9,14 @@ import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
+const cookies = inject('$cookies')
 const userList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
-  axios.get(`${apiUrl}/v1/admin/user?page=1&page_size=50`).then((res) => {
+  const accessToken = cookies.get('accessToken')
+  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
+  axios.get(`${apiUrl}/v1/admin/user?page=1&page_size=50`, config).then((res) => {
     userList.value = res.data.result
     userList.value.forEach((user) => {
       user.last_login = dayjs.utc(user.last_login).tz('Asia/Bangkok')

@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
 
 import dayjs from 'dayjs'
@@ -10,13 +10,16 @@ import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
+const cookies = inject('$cookies')
 const router = useRouter()
 const userId = router.currentRoute.value.params.id
 const userDetail = ref({})
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
-  axios.get(`${apiUrl}/v1/admin/user/${userId}`).then((res) => {
+  const accessToken = cookies.get('accessToken')
+  const config = { Headers: { Authorization: `Bearer ${accessToken}` } }
+  axios.get(`${apiUrl}/v1/admin/user/${userId}`, config).then((res) => {
     userDetail.value = res.data
     userDetail.value.verified_date = dayjs.utc(userDetail.value.verified_date).tz('Asia/Bangkok')
     userDetail.value.last_login = dayjs.utc(userDetail.value.last_login).tz('Asia/Bangkok')

@@ -1,8 +1,9 @@
 <script setup>
 import axios from 'axios'
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
 
+const cookies = inject('$cookies')
 const router = useRouter()
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -38,7 +39,9 @@ function createPrompt() {
 
 function create() {
   let postData = { title: title.value, detail: detail.value, prompt: prompts.value }
-  axios.post(`${apiUrl}/v1/admin/prompt`, postData).then((res) => {
+  const accessToken = cookies.get('accessToken')
+  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
+  axios.post(`${apiUrl}/v1/admin/prompt`, postData, config).then((res) => {
     res.data
     router.push('/prompt')
   })
