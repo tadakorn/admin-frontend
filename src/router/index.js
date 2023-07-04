@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { inject } from 'vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -102,5 +103,10 @@ const router = createRouter({
     }
   ]
 })
-
+router.beforeEach((to, from, next) => {
+  const cookies = inject('$cookies')
+  const isAuthenticated = cookies.get('accessToken')
+  if (to.name !== 'login' && !isAuthenticated) next({ name: 'login' })
+  else next()
+})
 export default router

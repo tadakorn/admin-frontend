@@ -63,6 +63,7 @@ function login() {
         res.data.refresh_token,
         dayjs.unix(res.data.refresh_expires_at).toDate()
       )
+      modalObject.value.hide()
       router.push('/user')
     })
     .catch((err) => {

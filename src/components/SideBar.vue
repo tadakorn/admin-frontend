@@ -1,9 +1,11 @@
 <script setup>
+import { inject } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { useDefaultStore } from '../stores/default'
 
 const router = useRouter()
 const defaultStore = useDefaultStore()
+const cookies = inject('$cookies')
 
 function isRouteActive(path) {
   return router.currentRoute.value.path !== path
@@ -14,10 +16,15 @@ function changePage() {
     defaultStore.toggleSidebar()
   }
 }
+function logout() {
+  cookies.remove('accessToken')
+  cookies.remove('refreshToken')
+  router.push('/login')
+}
 </script>
 
 <template>
-  <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar d-flex justify-content-between flex-column">
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-item">
         <RouterLink
@@ -103,6 +110,12 @@ function changePage() {
         </RouterLink>
       </li>
     </ul>
+    <div>
+      <button type="button" class="btn btn-danger">
+        <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" class="me-2" />
+        <span @click="logout">Log Out</span>
+      </button>
+    </div>
   </aside>
 </template>
 

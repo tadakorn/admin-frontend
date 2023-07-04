@@ -24,7 +24,8 @@ import {
   faBars,
   faCircleCheck,
   faCircleXmark,
-  faPersonShelter
+  faPersonShelter,
+  faArrowRightFromBracket
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faUser,
@@ -51,7 +52,8 @@ library.add(
   faCircleCheck,
   faCircleXmark,
   faCommentDots,
-  faPersonShelter
+  faPersonShelter,
+  faArrowRightFromBracket
 )
 
 const app = createApp(App)
