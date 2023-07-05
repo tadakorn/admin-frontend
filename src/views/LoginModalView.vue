@@ -23,6 +23,10 @@ const isError = ref({
   login: false
 })
 
+const errorMessage = ref({
+  email: ''
+})
+
 onMounted(() => {
   modalObject.value = new Modal(modalElement.value)
   modalObject.value.show()
@@ -32,6 +36,11 @@ function confirmLogin() {
   let isValid = true
   if (email.value === '' || email.value === null || email.value === undefined) {
     isError.value.email = true
+    errorMessage.value.email = 'กรุณาระบุ email '
+    isValid = false
+  } else if (!/^[^@]+@\w+(\.\w+)+\w$/.test(email.value)) {
+    isError.value.email = true
+    errorMessage.value.email = 'กรุณาระบุ email ให้ถูกต้อง'
     isValid = false
   } else {
     isError.value.email = false
@@ -67,7 +76,7 @@ function login() {
       router.push('/user')
     })
     .catch((err) => {
-      loginErrorMessage.value = err.message
+      loginErrorMessage.value = err.response.data.detail
       isError.value.login = true
     })
 }
@@ -97,7 +106,9 @@ function login() {
               v-model="email"
             />
             <div class="mt-2">
-              <span class="custom-color" v-if="isError.email"><small>กรุณาระบุ อีเมล</small></span>
+              <span class="custom-color" v-if="isError.email"
+                ><small>{{ errorMessage.email }}</small></span
+              >
             </div>
           </div>
           <div class="my-2">
@@ -109,8 +120,8 @@ function login() {
               v-model="password"
             />
             <div class="mt-2">
-              <span class="custom-color" v-if="isError.email"
-                ><small>กรุณาระบุ รหัสผ่าน</small></span
+              <span class="custom-color" v-if="isError.password"
+                ><small>กรุณาระบุ password</small></span
               >
             </div>
           </div>
