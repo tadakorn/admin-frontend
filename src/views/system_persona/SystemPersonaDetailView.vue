@@ -1,15 +1,9 @@
 <script setup>
 import axios from 'axios'
+import dayjs from 'dayjs'
 import { onMounted, ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
 import ConfirmDeleteModal from '../../components/ConfirmDeleteModal.vue'
-
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
-
-dayjs.extend(utc)
-dayjs.extend(timezone)
 
 const cookies = inject('$cookies')
 const router = useRouter()

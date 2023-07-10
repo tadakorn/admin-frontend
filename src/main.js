@@ -1,4 +1,6 @@
 import './assets/main.css'
+
+// Boostrap 5
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 
@@ -12,13 +14,9 @@ import router from './router'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 
-/* import the fontawesome core */
+// Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-
-/* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-/* import specific icons */
 import {
   faTerminal,
   faBars,
@@ -38,7 +36,6 @@ import {
   faCommentDots
 } from '@fortawesome/free-regular-svg-icons'
 
-/* add icons to the library */
 library.add(
   faUser,
   faHeart,
@@ -55,6 +52,15 @@ library.add(
   faPersonShelter,
   faArrowRightFromBracket
 )
+
+// Day.js
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 
 const app = createApp(App)
 

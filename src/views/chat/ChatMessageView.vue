@@ -1,13 +1,7 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, ref, inject } from 'vue'
-
 import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
-
-dayjs.extend(utc)
-dayjs.extend(timezone)
+import { onMounted, ref, inject } from 'vue'
 
 const cookies = inject('$cookies')
 const chatMessageList = ref([])

@@ -4,11 +4,6 @@ import { onMounted, ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
 
 import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
-
-dayjs.extend(utc)
-dayjs.extend(timezone)
 
 const cookies = inject('$cookies')
 const router = useRouter()
