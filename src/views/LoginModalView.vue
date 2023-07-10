@@ -97,43 +97,46 @@ function login() {
           <div class="text-center">
             <h2 id="exampleModalLabel">Log In</h2>
           </div>
-          <div class="my-2">
-            <input
-              type="email"
-              class="form-control"
-              style="height: 60px"
-              placeholder="Email address"
-              v-model="email"
-            />
-            <div class="mt-2">
-              <span class="custom-color" v-if="isError.email"
-                ><small>{{ errorMessage.email }}</small></span
-              >
-            </div>
-          </div>
-          <div class="my-2">
-            <input
-              type="password"
-              class="form-control"
-              style="height: 60px"
-              placeholder="password"
-              v-model="password"
-            />
-            <div class="mt-2">
-              <span class="custom-color" v-if="isError.password"
-                ><small>กรุณาระบุ password</small></span
-              >
-            </div>
-          </div>
-          <div class="d-flex justify-content-center mt-2">
-            <button type="button" class="btn btn-primary" @click="confirmLogin">Log In</button>
-          </div>
 
-          <div class="d-flex justify-content-center mt-3">
-            <span class="custom-color" v-if="isError.login"
-              ><small>{{ loginErrorMessage }}</small></span
-            >
-          </div>
+          <form @submit.prevent="confirmLogin" novalidate>
+            <div class="my-2">
+              <input
+                type="email"
+                class="form-control"
+                style="height: 60px"
+                placeholder="Email address"
+                v-model="email"
+              />
+              <div class="mt-2">
+                <span class="custom-color" v-if="isError.email"
+                  ><small>{{ errorMessage.email }}</small></span
+                >
+              </div>
+            </div>
+            <div class="my-2">
+              <input
+                type="password"
+                class="form-control"
+                style="height: 60px"
+                placeholder="password"
+                v-model="password"
+              />
+              <div class="mt-2">
+                <span class="custom-color" v-if="isError.password"
+                  ><small>กรุณาระบุ password</small></span
+                >
+              </div>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <button type="submit" class="btn btn-primary">Log In</button>
+            </div>
+
+            <div class="d-flex justify-content-center mt-3">
+              <span class="custom-color" v-if="isError.login"
+                ><small>{{ loginErrorMessage }}</small></span
+              >
+            </div>
+          </form>
         </div>
       </div>
     </div>
