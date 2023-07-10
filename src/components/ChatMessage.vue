@@ -6,16 +6,20 @@ import { onMounted, ref, inject } from 'vue'
 const cookies = inject('$cookies')
 const chatMessageList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
-
+const props = defineProps({
+  chatId: String
+})
 function getData() {
   const accessToken = cookies.get('accessToken')
   const config = { headers: { Authorization: `Bearer ${accessToken}` } }
-  axios.get(`${apiUrl}/v1/admin/chat/message?page=1&page_size=100`, config).then((res) => {
-    chatMessageList.value = res.data.result
-    chatMessageList.value.forEach((chatMessage) => {
-      chatMessage.date = dayjs.utc(chatMessage.date).tz('Asia/Bangkok')
+  axios
+    .get(`${apiUrl}/v1/admin/chat/chat/${props.chatId}/messages?page=1&page_size=100`, config)
+    .then((res) => {
+      chatMessageList.value = res.data.result
+      chatMessageList.value.forEach((chatMessage) => {
+        chatMessage.date = dayjs.utc(chatMessage.date).tz('Asia/Bangkok')
+      })
     })
-  })
 }
 
 onMounted(() => {
@@ -26,28 +30,15 @@ onMounted(() => {
   <div class="container">
     <!-- title -->
     <div>
-      <div class="h5">Chat Message</div>
-      <div class="mt-4">
-        <div class="search-form">
-          <div class="input-group">
-            <input
-              type="text"
-              class="form-control search-input"
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="search-button"
-            />
-          </div>
-        </div>
-      </div>
+      <div class="h5 mt-4">Message</div>
+
       <!-- info -->
-      <div class="table-responsive mt-4 rounded-2">
+      <div class="table-responsive rounded-2">
         <table class="table table-hover info">
           <thead>
             <tr>
               <th scope="col">id</th>
               <th scope="col">uid</th>
-              <th scope="col">chat_id</th>
               <th scope="col">seq</th>
               <th scope="col">content</th>
               <th scope="col">role</th>
@@ -62,7 +53,6 @@ onMounted(() => {
             >
               <td>{{ chatMessage.id }}</td>
               <td>{{ chatMessage.uid }}</td>
-              <td>{{ chatMessage.chat_id }}</td>
               <td>{{ chatMessage.seq }}</td>
               <td>{{ chatMessage.content }}</td>
               <td>{{ chatMessage.role }}</td>
@@ -70,6 +60,9 @@ onMounted(() => {
             </tr>
           </tbody>
         </table>
+        <div class="my-4">
+          <button type="button" class="btn btn-danger">Delete</button>
+        </div>
       </div>
     </div>
   </div>

@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { onMounted, ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
+import chatMessage from '../../components/ChatMessage.vue'
 
 import dayjs from 'dayjs'
 
@@ -69,21 +70,31 @@ onMounted(() => {
       <div class="row align-items-center mt-4">
         <div class="col-12 col-md-2 title">is_active</div>
         <div class="col-12 col-md-6">
-          <input class="form-check-input" type="checkbox" v-model="chatDetail.is_active" />
+          <font-awesome-icon
+            v-if="chatDetail.is_active"
+            icon="fa-solid fa-circle-check "
+            style="color: #3ec70b"
+          />
+          <font-awesome-icon v-else icon="fa-solid fa-circle-xmark " style="color: red" />
         </div>
       </div>
 
       <div class="row align-items-center mt-4">
         <div class="col-12 col-md-2 title">is_published</div>
         <div class="col-12 col-md-6">
-          <input class="form-check-input" type="checkbox" v-model="chatDetail.is_published" />
+          <font-awesome-icon
+            v-if="chatDetail.is_published"
+            icon="fa-solid fa-circle-check "
+            style="color: #3ec70b"
+          />
+          <font-awesome-icon v-else icon="fa-solid fa-circle-xmark " style="color: red" />
         </div>
       </div>
 
       <div class="row align-items-center mt-4">
         <div class="col-12 col-md-2 title">publish_date</div>
         <div class="col-12 col-md-6">
-          <VueDatePicker v-model="chatDetail.publish_date"></VueDatePicker>
+          <div>{{ chatDetail.publish_date }}</div>
         </div>
       </div>
 
@@ -105,6 +116,7 @@ onMounted(() => {
       </div>
     </div>
   </div>
+  <chatMessage :chatId="chatId" />
 </template>
 
 <style scoped>

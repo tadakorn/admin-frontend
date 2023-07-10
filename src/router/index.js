@@ -76,16 +76,7 @@ const router = createRouter({
       name: 'chat-folder',
       component: () => import('../views/chat/ChatFolderListView.vue')
     },
-    {
-      path: '/chat-message',
-      name: 'chat-message',
-      component: () => import('../views/chat/ChatMessageView.vue')
-    },
-    {
-      path: '/chat-message/:id',
-      name: 'chat-message-detail',
-      component: () => import('../views/chat/ChatMessageDetailView.vue')
-    },
+
     {
       path: '/system-persona',
       name: 'system-persona',
