@@ -2,7 +2,7 @@
 import axios from 'axios'
 import { onMounted, ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
-import ConfirmDeleteModal from '../components/ConfirmDeleteModal.vue'
+import ConfirmDeleteModal from '../../components/ConfirmDeleteModal.vue'
 
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
@@ -23,7 +23,7 @@ onMounted(() => {
 })
 
 function getData() {
-  const accessToken = cookies.get('acccessToken')
+  const accessToken = cookies.get('accessToken')
   const config = { headers: { Authorization: `Bearer ${accessToken}` } }
   axios.get(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`, config).then((res) => {
     systemPersona.value = res.data
@@ -40,7 +40,9 @@ function getData() {
 }
 
 async function confirmDelete() {
-  await axios.delete(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`)
+  const accessToken = cookies.get('accessToken')
+  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
+  await axios.delete(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`, config)
   router.push('/system-persona')
 }
 

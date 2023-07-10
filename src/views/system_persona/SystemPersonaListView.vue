@@ -9,7 +9,6 @@ const apiUrl = import.meta.env.VITE_API_URL
 function getData() {
   const accessToken = cookies.get('accessToken')
   const config = { headers: { Authorization: `Bearer ${accessToken}` } }
-  console.log(config)
   axios.get(`${apiUrl}/v1/admin/system_persona?page=1&page_size=100`, config).then((res) => {
     systemPersonaList.value = res.data.result
   })
