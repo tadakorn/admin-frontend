@@ -1,11 +1,48 @@
 <script setup>
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { useDefaultStore } from '../stores/default'
 
 const router = useRouter()
 const defaultStore = useDefaultStore()
 const cookies = inject('$cookies')
+const navItems = ref([
+  {
+    path: "/user",
+    title: "User",
+    icon: "fa-regular fa-user"
+  },
+  {
+    path: "/organization",
+    title: "Organization",
+    icon: "fa-regular fa-building"
+  },
+  {
+    path: "/api-key",
+    title: "API Key",
+    icon: "fa-solid fa-key"
+  },
+  {
+    path: "/prompt",
+    title: "Prompt",
+    icon: "fa-regular fa-comments"
+  },
+  {
+    path: "/chat",
+    title: "Chat",
+    icon: "fa-regular fa-comment"
+  },
+  {
+    path: "/chat-folder",
+    title: "Chat Folder",
+    icon: "fa-regular fa-folder-closed"
+  },
+  {
+    path: "/system-persona",
+    title: "System Persona",
+    icon: "fa-solid fa-person-shelter"
+  },
+])
 
 function isRouteActive(path) {
   return router.currentRoute.value.path !== path
@@ -16,6 +53,7 @@ function changePage() {
     defaultStore.toggleSidebar()
   }
 }
+
 function logout() {
   cookies.remove('accessToken')
   cookies.remove('refreshToken')
@@ -26,76 +64,15 @@ function logout() {
 <template>
   <aside id="sidebar" class="sidebar d-flex justify-content-between flex-column">
     <ul class="sidebar-nav" id="sidebar-nav">
-      <li class="nav-item">
+      <li v-for="item in navItems" :key="item.path" class="nav-item">
         <RouterLink
           class="nav-link"
-          :class="{ collapsed: isRouteActive('/user') }"
-          to="/user"
+          :class="{ collapsed: isRouteActive(`${item.path}`) }"
+          :to="item.path"
           @click="changePage"
         >
-          <font-awesome-icon icon="fa-regular fa-user" />
-          <span>User</span>
-        </RouterLink>
-      </li>
-
-      <li class="nav-item">
-        <RouterLink
-          class="nav-link"
-          :class="{ collapsed: isRouteActive('/organization') }"
-          to="/organization"
-          @click="changePage"
-        >
-          <font-awesome-icon icon="fa-regular fa-building" />
-          <span>Organization</span>
-        </RouterLink>
-      </li>
-
-      <li class="nav-item">
-        <RouterLink
-          class="nav-link"
-          :class="{ collapsed: isRouteActive('/prompt') }"
-          to="/prompt"
-          @click="changePage"
-        >
-          <font-awesome-icon icon="fa-regular fa-comments" />
-
-          <span>Prompt</span>
-        </RouterLink>
-      </li>
-
-      <li class="nav-item">
-        <RouterLink
-          class="nav-link"
-          :class="{ collapsed: isRouteActive('/chat') }"
-          to="/chat"
-          @click="changePage"
-        >
-          <font-awesome-icon icon="fa-regular fa-comment" />
-          <span>Chat</span>
-        </RouterLink>
-      </li>
-
-      <li class="nav-item">
-        <RouterLink
-          class="nav-link"
-          :class="{ collapsed: isRouteActive('/chat-folder') }"
-          to="/chat-folder"
-          @click="changePage"
-        >
-          <font-awesome-icon icon="fa-regular fa-folder-closed" />
-          <span>Chat Folder</span>
-        </RouterLink>
-      </li>
-
-      <li class="nav-item">
-        <RouterLink
-          class="nav-link"
-          :class="{ collapsed: isRouteActive('/system-persona') }"
-          to="/system-persona"
-          @click="changePage"
-        >
-          <font-awesome-icon icon="fa-solid fa-person-shelter" />
-          <span>System Persona</span>
+          <font-awesome-icon :icon="item.icon" />
+          <span>{{ item.title }}</span>
         </RouterLink>
       </li>
     </ul>

@@ -76,7 +76,6 @@ const router = createRouter({
       name: 'chat-folder',
       component: () => import('../views/chat/ChatFolderListView.vue')
     },
-
     {
       path: '/system-persona',
       name: 'system-persona',
@@ -91,7 +90,22 @@ const router = createRouter({
       path: '/system-persona/:id',
       name: 'system-persona-detail',
       component: () => import('../views/system_persona/SystemPersonaDetailView.vue')
-    }
+    },
+    {
+      path: '/api-key',
+      name: 'api-key',
+      component: () => import('../views/api_key/APIKeyListView.vue')
+    },
+    {
+      path: '/api-key/create',
+      name: 'api-key-create',
+      component: () => import('../views/api_key/APIKeyCreateView.vue')
+    },
+    {
+      path: '/api-key/:id',
+      name: 'api-key-detail',
+      component: () => import('../views/api_key/APIKeyDetailView.vue')
+    },
   ]
 })
 router.beforeEach((to, from, next) => {

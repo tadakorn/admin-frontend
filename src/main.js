@@ -23,7 +23,8 @@ import {
   faCircleCheck,
   faCircleXmark,
   faPersonShelter,
-  faArrowRightFromBracket
+  faArrowRightFromBracket,
+  faKey
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faUser,
@@ -50,7 +51,8 @@ library.add(
   faCircleXmark,
   faCommentDots,
   faPersonShelter,
-  faArrowRightFromBracket
+  faArrowRightFromBracket,
+  faKey
 )
 
 // Day.js

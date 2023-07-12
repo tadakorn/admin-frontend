@@ -26,23 +26,23 @@ function getData() {
   })
 }
 
-onMounted(() => {
-  getData()
-})
-
 function deleteData() {
   const accessToken = cookies.get('accessToken')
   const config = { headers: { Authorization: `Bearer ${accessToken}` } }
   axios
-    .delete(`${apiUrl}/v1/admin/prompt/${userId}`, config)
-    .then((res) => {
-      res.data
-      router.push('/prompt')
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+  .delete(`${apiUrl}/v1/admin/prompt/${userId}`, config)
+  .then((res) => {
+    res.data
+    router.push('/prompt')
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 }
+
+onMounted(() => {
+  getData()
+})
 </script>
 
 <template>
