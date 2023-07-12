@@ -2,7 +2,7 @@
 import axios from 'axios'
 import { ref, inject } from 'vue'
 import { useRouter } from 'vue-router'
-import defaultImage from '../assets/default.jpg'
+import defaultImage from '../../assets/default.jpg'
 
 const cookies = inject('$cookies')
 const router = useRouter()
