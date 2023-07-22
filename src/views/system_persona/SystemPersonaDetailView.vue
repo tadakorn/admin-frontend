@@ -1,11 +1,10 @@
 <script setup>
 import axios from 'axios'
 import dayjs from 'dayjs'
-import { onMounted, ref, inject } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import ConfirmDeleteModal from '../../components/ConfirmDeleteModal.vue'
 
-const cookies = inject('$cookies')
 const router = useRouter()
 const systemPersonaId = router.currentRoute.value.params.id
 const systemPersona = ref({})
@@ -17,9 +16,7 @@ onMounted(() => {
 })
 
 function getData() {
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
-  axios.get(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`, config).then((res) => {
+  axios.get(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`).then((res) => {
     systemPersona.value = res.data
     systemPersona.value.preview_image = systemPersona.value.image_url
     systemPersona.value.created_at = dayjs
@@ -34,9 +31,7 @@ function getData() {
 }
 
 async function confirmDelete() {
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
-  await axios.delete(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`, config)
+  await axios.delete(`${apiUrl}/v1/admin/system_persona/${systemPersonaId}`)
   router.push('/system-persona')
 }
 

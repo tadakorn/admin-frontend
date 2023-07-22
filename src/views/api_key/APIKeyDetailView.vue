@@ -1,10 +1,9 @@
 <script setup>
 import axios from 'axios'
 import dayjs from 'dayjs'
-import { onMounted, ref, inject } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-const cookies = inject('$cookies')
 const router = useRouter()
 const apiKeyId = router.currentRoute.value.params.id
 const apiUrl = import.meta.env.VITE_API_URL
@@ -15,9 +14,7 @@ const isError = ref({
 })
 
 function getData() {
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
-  axios.get(`${apiUrl}/v1/admin/api-key/${apiKeyId}`, config).then((res) => {
+  axios.get(`${apiUrl}/v1/admin/api-key/${apiKeyId}`).then((res) => {
     data.value = res.data
     data.value.created_at = dayjs
       .utc(data.value.created_at)
@@ -66,10 +63,9 @@ function update() {
     organization_id: data.value.organization_id || null,
     is_system: data.value.is_system
   }
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
+
   axios
-    .put(`${apiUrl}/v1/admin/api-key/${apiKeyId}`, postData, config)
+    .put(`${apiUrl}/v1/admin/api-key/${apiKeyId}`, postData)
     .then((res) => {
       res.data
       router.push('/api-key')
@@ -80,10 +76,8 @@ function update() {
 }
 
 function deleteData() {
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
   axios
-    .delete(`${apiUrl}/v1/admin/api-key/${apiKeyId}`, config)
+    .delete(`${apiUrl}/v1/admin/api-key/${apiKeyId}`)
     .then((res) => {
       res.data
       router.push('/api-key')

@@ -1,19 +1,16 @@
 <script setup>
 import axios from 'axios'
 import dayjs from 'dayjs'
-import { onMounted, ref, inject } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-const cookies = inject('$cookies')
 const router = useRouter()
 const userId = router.currentRoute.value.params.id
 const promptDetail = ref({})
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
-  axios.get(`${apiUrl}/v1/admin/prompt/${userId}`, config).then((res) => {
+  axios.get(`${apiUrl}/v1/admin/prompt/${userId}`).then((res) => {
     promptDetail.value = res.data
     promptDetail.value.created_at = dayjs
       .utc(promptDetail.value.created_at)
@@ -27,17 +24,15 @@ function getData() {
 }
 
 function deleteData() {
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
   axios
-  .delete(`${apiUrl}/v1/admin/prompt/${userId}`, config)
-  .then((res) => {
-    res.data
-    router.push('/prompt')
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+    .delete(`${apiUrl}/v1/admin/prompt/${userId}`)
+    .then((res) => {
+      res.data
+      router.push('/prompt')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 onMounted(() => {

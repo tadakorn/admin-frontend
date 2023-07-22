@@ -1,10 +1,9 @@
 <script setup>
 import axios from 'axios'
-import { ref, inject } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import defaultImage from '../../assets/default.jpg'
 
-const cookies = inject('$cookies')
 const router = useRouter()
 const apiUrl = import.meta.env.VITE_API_URL
 const organization = ref({
@@ -52,16 +51,8 @@ function create() {
   form.append('openai_org_key', organization.value.openai_org_key)
   form.append('openai_api_key', organization.value.openai_api_key)
 
-  const accessToken = cookies.get('accessToken')
-  const config = {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'multipart/form-data'
-    }
-  }
-
   axios
-    .post(`${apiUrl}/v1/admin/organization`, form, config)
+    .post(`${apiUrl}/v1/admin/organization`, form)
     .then(() => {
       router.push('/organization')
     })

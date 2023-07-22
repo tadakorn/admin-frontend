@@ -1,17 +1,17 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import NavBar from './components/NavBar.vue';
-import SideBar from './components/SideBar.vue';
-import { useDefaultStore } from './stores/default';
+import NavBar from './components/NavBar.vue'
+import SideBar from './components/SideBar.vue'
+import { useDefaultStore } from './stores/default'
 
 const defaultStore = useDefaultStore()
 </script>
 
 <template>
-  <div class="app" :class="{'toggle-sidebar': defaultStore.isSidebarActive}">
+  <div class="app" :class="{ 'toggle-sidebar': defaultStore.isSidebarActive }">
     <NavBar />
     <SideBar />
-    
+
     <main id="main" class="main">
       <RouterView />
     </main>
@@ -24,7 +24,7 @@ const defaultStore = useDefaultStore()
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background: #f6f9ff;
   color: #444444;
 }
@@ -45,11 +45,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 @media (min-width: 1200px) {
-
   #main,
   #footer {
     margin-left: 300px;
@@ -63,7 +62,6 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-
   .toggle-sidebar #main,
   .toggle-sidebar #footer {
     margin-left: 0;

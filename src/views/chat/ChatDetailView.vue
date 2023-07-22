@@ -1,21 +1,18 @@
 <script setup>
 import axios from 'axios'
-import { onMounted, ref, inject } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import chatMessage from '../../components/ChatMessage.vue'
 
 import dayjs from 'dayjs'
 
-const cookies = inject('$cookies')
 const router = useRouter()
 const chatId = router.currentRoute.value.params.id
 const chatDetail = ref({})
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
-  axios.get(`${apiUrl}/v1/admin/chat/chat/${chatId}`, config).then((res) => {
+  axios.get(`${apiUrl}/v1/admin/chat/chat/${chatId}`).then((res) => {
     chatDetail.value = res.data
     chatDetail.value.created_at = dayjs
       .utc(chatDetail.value.created_at)

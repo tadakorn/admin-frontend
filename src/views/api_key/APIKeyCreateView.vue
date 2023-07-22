@@ -1,13 +1,12 @@
 <script setup>
 import axios from 'axios'
-import { ref, inject } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-const cookies = inject('$cookies')
 const router = useRouter()
 const apiUrl = import.meta.env.VITE_API_URL
 const data = ref({
-  provider: "",
+  provider: '',
   api_key: null,
   org_key: null,
   organization_id: null,
@@ -20,7 +19,11 @@ const isError = ref({
 
 function createAPIKey() {
   let isValid = true
-  if (data.value.provider === '' || data.value.provider === null || data.value.provider === undefined) {
+  if (
+    data.value.provider === '' ||
+    data.value.provider === null ||
+    data.value.provider === undefined
+  ) {
     isError.value.provider = true
     isValid = false
   } else {
@@ -50,9 +53,8 @@ function create() {
     organization_id: data.value.organization_id,
     is_system: data.value.is_system
   }
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
-  axios.post(`${apiUrl}/v1/admin/api-key`, postData, config).then((res) => {
+
+  axios.post(`${apiUrl}/v1/admin/api-key`, postData).then((res) => {
     res.data
     router.push('/api-key')
   })

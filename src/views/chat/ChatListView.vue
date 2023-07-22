@@ -1,16 +1,13 @@
 <script setup>
 import axios from 'axios'
 import dayjs from 'dayjs'
-import { onMounted, ref, inject } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const cookies = inject('$cookies')
 const chatList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
 
 function getData() {
-  const accessToken = cookies.get('accessToken')
-  const config = { headers: { Authorization: `Bearer ${accessToken}` } }
-  axios.get(`${apiUrl}/v1/admin/chat/chat?page=1&page_size=100`, config).then((res) => {
+  axios.get(`${apiUrl}/v1/admin/chat/chat?page=1&page_size=100`).then((res) => {
     chatList.value = res.data.result
     chatList.value.forEach((chat) => {
       chat.publish_date = dayjs.utc(chat.publish_date).tz('Asia/Bangkok')

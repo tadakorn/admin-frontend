@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { inject } from 'vue'
+
+import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -105,13 +106,12 @@ const router = createRouter({
       path: '/api-key/:id',
       name: 'api-key-detail',
       component: () => import('../views/api_key/APIKeyDetailView.vue')
-    },
+    }
   ]
 })
 router.beforeEach((to, from, next) => {
-  const cookies = inject('$cookies')
-  const isAuthenticated = cookies.get('accessToken')
-  if (to.name !== 'login' && !isAuthenticated) next({ name: 'login' })
+  const store = useAuthStore()
+  if (to.name !== 'login' && !store.isAuthenticated()) next({ name: 'login' })
   else next()
 })
 export default router

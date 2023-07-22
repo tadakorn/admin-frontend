@@ -8,40 +8,40 @@ const defaultStore = useDefaultStore()
 const cookies = inject('$cookies')
 const navItems = ref([
   {
-    path: "/user",
-    title: "User",
-    icon: "fa-regular fa-user"
+    path: '/user',
+    title: 'User',
+    icon: 'fa-regular fa-user'
   },
   {
-    path: "/organization",
-    title: "Organization",
-    icon: "fa-regular fa-building"
+    path: '/organization',
+    title: 'Organization',
+    icon: 'fa-regular fa-building'
   },
   {
-    path: "/api-key",
-    title: "API Key",
-    icon: "fa-solid fa-key"
+    path: '/api-key',
+    title: 'API Key',
+    icon: 'fa-solid fa-key'
   },
   {
-    path: "/prompt",
-    title: "Prompt",
-    icon: "fa-regular fa-comments"
+    path: '/prompt',
+    title: 'Prompt',
+    icon: 'fa-regular fa-comments'
   },
   {
-    path: "/chat",
-    title: "Chat",
-    icon: "fa-regular fa-comment"
+    path: '/chat',
+    title: 'Chat',
+    icon: 'fa-regular fa-comment'
   },
   {
-    path: "/chat-folder",
-    title: "Chat Folder",
-    icon: "fa-regular fa-folder-closed"
+    path: '/chat-folder',
+    title: 'Chat Folder',
+    icon: 'fa-regular fa-folder-closed'
   },
   {
-    path: "/system-persona",
-    title: "System Persona",
-    icon: "fa-solid fa-person-shelter"
-  },
+    path: '/system-persona',
+    title: 'System Persona',
+    icon: 'fa-solid fa-person-shelter'
+  }
 ])
 
 function isRouteActive(path) {
