@@ -2,8 +2,9 @@
 import { ref, onMounted, inject } from 'vue'
 import { useRouter } from 'vue-router'
 import { Modal } from 'bootstrap'
-import axios from 'axios'
 import dayjs from 'dayjs'
+
+import axiosPublic from '@/api/axiosPublic'
 
 const apiUrl = import.meta.env.VITE_API_URL
 const router = useRouter()
@@ -57,15 +58,9 @@ function confirmLogin() {
 }
 function login() {
   let postData = { email: email.value, password: password.value }
-  let customConfig = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }
-  axios
-    .post(`${apiUrl}/v1/auth/token`, JSON.stringify(postData), customConfig)
+  axiosPublic
+    .post(`${apiUrl}/v1/auth/token`, JSON.stringify(postData))
     .then((res) => {
-      console.log(res.data)
       cookies.set('accessToken', res.data.access_token, dayjs.unix(res.data.expires_at).toDate())
       cookies.set(
         'refreshToken',

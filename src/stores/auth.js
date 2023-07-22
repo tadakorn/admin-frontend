@@ -1,11 +1,14 @@
 import { inject } from 'vue'
+import { useRouter } from 'vue-router'
 import { defineStore } from 'pinia'
-import axios from 'axios'
 import dayjs from 'dayjs'
+
+import axiosPublic from '@/api/axiosPublic'
 
 export const useAuthStore = defineStore('auth', () => {
   const apiUrl = import.meta.env.VITE_API_URL
   const cookies = inject('$cookies')
+  const router = useRouter()
 
   function getAccessToken() {
     return cookies.get('accessToken')
@@ -16,13 +19,20 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function isAuthenticated() {
-    const refreshToken = getRefreshToken()
+    const refreshToken = cookies.get('refreshToken')
     if (refreshToken) {
       return true
     } else {
       return false
     }
   }
+
+  function logout() {
+    cookies.remove('accessToken')
+    cookies.remove('refreshToken')
+    router.push('/login')
+  }
+
   async function refresh() {
     const refreshToken = getRefreshToken()
     let postData = { refresh_token: refreshToken } //รับ value จาก backend
@@ -31,12 +41,19 @@ export const useAuthStore = defineStore('auth', () => {
         'Content-Type': 'application/json'
       }
     }
-    const res = await axios.post(
-      `${apiUrl}/v1/auth/token/refresh`,
-      JSON.stringify(postData),
-      customConfig
-    )
-    cookies.set('accessToken', res.data.access_token, dayjs.unix(res.data.expires_at).toDate())
+    try {
+      const res = await axiosPublic.post(
+        `${apiUrl}/v1/auth/token/refresh`,
+        JSON.stringify(postData),
+        customConfig
+      )
+      cookies.set('accessToken', res.data.access_token, dayjs.unix(res.data.expires_at).toDate())
+      return true
+    } catch (error) {
+      logout()
+      return false
+    }
   }
-  return { isAuthenticated, refresh, getAccessToken, getRefreshToken }
+
+  return { getAccessToken, getRefreshToken, isAuthenticated, refresh, logout }
 })

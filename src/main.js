@@ -14,7 +14,7 @@ import router from './router'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 
-import './api/axios'
+import './api/axiosPrivate'
 
 // Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
