@@ -2,6 +2,8 @@
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
 
+import BooleanDisplay from '@/components/BooleanDisplay.vue'
+
 const organizationList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -45,6 +47,7 @@ onMounted(() => {
               <th scope="col">title</th>
               <th scope="col">logo_url</th>
               <th scope="col">config</th>
+              <th scope="col">use_system_api_key</th>
             </tr>
           </thead>
           <tbody>
@@ -64,6 +67,9 @@ onMounted(() => {
               </td>
               <td>
                 <pre>{{ organization.config }}</pre>
+              </td>
+              <td>
+                <BooleanDisplay :isTrue="organization.use_system_api_key" />
               </td>
             </tr>
           </tbody>

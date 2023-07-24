@@ -1,13 +1,9 @@
 <script setup>
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
-
 import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
 
-dayjs.extend(utc)
-dayjs.extend(timezone)
+import BooleanDisplay from '@/components/BooleanDisplay.vue';
 
 const userList = ref([])
 const apiUrl = import.meta.env.VITE_API_URL
@@ -71,20 +67,10 @@ onMounted(() => {
               <td>{{ user.role }}</td>
               <td>{{ user.organization }}</td>
               <td class="text-center">
-                <font-awesome-icon
-                  v-if="user.is_active"
-                  icon="fa-solid fa-circle-check "
-                  style="color: #3ec70b"
-                />
-                <font-awesome-icon v-else icon="fa-solid fa-circle-xmark " style="color: red" />
+                <BooleanDisplay :isTrue="user.is_active" />
               </td>
               <td class="text-center">
-                <font-awesome-icon
-                  v-if="user.is_verified"
-                  icon="fa-solid fa-circle-check "
-                  style="color: #3ec70b"
-                />
-                <font-awesome-icon v-else icon="fa-solid fa-circle-xmark " style="color: red" />
+                <BooleanDisplay :isTrue="user.is_verified" />
               </td>
               <td>{{ user.verified_date }}</td>
               <td>{{ user.creator }}</td>

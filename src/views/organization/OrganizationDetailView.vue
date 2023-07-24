@@ -83,6 +83,13 @@ onMounted(() => {
       </div>
 
       <div class="row align-items-center mt-4">
+        <div class="col-12 col-md-2 title">use_system_api_key</div>
+        <div class="col-12 col-md-6">
+          <input class="form-check-input" type="checkbox" v-model="data.use_system_api_key" />
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-4">
         <div class="col-12 col-md-2 title">created_at</div>
         <div class="col-12 col-md-6">
           <input type="text" class="form-control" v-model="data.created_at" />
