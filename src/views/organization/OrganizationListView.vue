@@ -43,8 +43,8 @@ onMounted(() => {
             <tr>
               <th scope="col">id</th>
               <th scope="col">title</th>
-              <th scope="col">openai_org_key</th>
-              <th scope="col">openai_api_key</th>
+              <th scope="col">logo_url</th>
+              <th scope="col">config</th>
             </tr>
           </thead>
           <tbody>
@@ -55,8 +55,16 @@ onMounted(() => {
             >
               <td>{{ organization.id }}</td>
               <td>{{ organization.title }}</td>
-              <td>{{ organization.openai_org_key }}</td>
-              <td>{{ organization.openai_api_key }}</td>
+              <td>
+                <img
+                  v-if="organization.logo_url"
+                  :src="organization.logo_url"
+                  style="height: 64px"
+                />
+              </td>
+              <td>
+                <pre>{{ organization.config }}</pre>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -66,6 +74,10 @@ onMounted(() => {
 </template>
 
 <style>
+pre {
+  margin-bottom: 0;
+}
+
 .info {
   cursor: pointer;
   font-size: 14px;
